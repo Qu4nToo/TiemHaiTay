@@ -65,10 +65,10 @@
 
 
             <div class="text-center">
-                <p>Not a member? <a href="Register.php">Register</a></p>
+                <p>Not a member? <a href="../register/">Register</a></p>
             </div>
             <div class="text-center">
-                <p><a href="welcome.php" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i>Go back</a></p>
+                <p><a href="../" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i>Go back</a></p>
             </div>
         </form>
     </div>
@@ -96,11 +96,11 @@
             document.getElementById("error-text-2").innerHTML = text1;
             var frm = document.frmLogin;
             if (u == "admin" && p == "123"){
-                frm.action = 'admin.html';
+                frm.action = './admin/';
                 frm.submit();
             }
             else if (text == "" && text1 == "") {
-                frm.action = 'welcome.php';
+                frm.action = '/';
                 frm.submit();
             }
 
