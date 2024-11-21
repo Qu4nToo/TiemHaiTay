@@ -1,5 +1,5 @@
 <?php
-require_once '../models/product.php';
+require '../config/database.php';
 
 function handleRequest($action) {
     switch ($action) {
