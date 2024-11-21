@@ -38,7 +38,7 @@
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-                                <form id="register-form" name="frmRegister" action="Login.php">
+                                <form id="register-form" name="frmRegister" action="../login/">
 
                                     <div data-mdb-input-init class="form-outline mb-2">
                                         <label class="form-label" for="username">User Name</label>
@@ -85,7 +85,7 @@
                                     </div>
 
                                     <p class="text-center text-muted mt-3 mb-0">Have already an account? <a
-                                            href="Login.php" class="fw-bold text-body"><u>Login here</u></a></p>
+                                            href="../login/" class="fw-bold text-body"><u>Login here</u></a></p>
 
                                 </form>
                             </div>

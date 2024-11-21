@@ -130,7 +130,7 @@ cards.forEach(card => {
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
-            <a href="welcome.php" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
+            <a href="../" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
                 <img class="img-fluid" src="./img/lopoXoaPhong.png" width="30%" height="30%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
@@ -201,18 +201,14 @@ cards.forEach(card => {
             <div class="collapse navbar-collapse flex-grow-0 ms-1" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 ">
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark" href="welcome.php">Home</a>
+                        <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="AllProduct.php">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="#">Refund</a>
+                        <a class="nav-link text-dark " href="../contact/">Contact</a>
                     </li>
-                    <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="Contact.php">Contact</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
@@ -224,7 +220,7 @@ cards.forEach(card => {
                         <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="Login.php"><i class="fa-regular fa-user"></i></a>
+                        <a class="nav-link text-dark " href="../login/"><i class="fa-regular fa-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -419,7 +415,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 4.490.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -443,7 +439,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 9.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -466,7 +462,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 4.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -489,7 +485,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 4.790.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -516,7 +512,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 27.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -540,7 +536,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 29.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -563,7 +559,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 22.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -587,7 +583,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 14.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -614,7 +610,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 14.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -638,7 +634,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 20.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -662,7 +658,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 9.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"
@@ -686,7 +682,7 @@ cards.forEach(card => {
                                     <p class="card-text text-danger fw-bold">Price: 2.900.000 VND</p>
                                     <div class="btn-group" role="group" aria-label="Basic example"
                                         style="float: right;">
-                                        <a href="productDetailed.php"><button type="button"
+                                        <a href="../productdetail/"><button type="button"
                                                 class="btn btnAllProduct-viewdetail bg-dark text-light">View
                                                 detail</button></a>
                                         <a href="ProductPay.php"><button type="button"

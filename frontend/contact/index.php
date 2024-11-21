@@ -132,18 +132,14 @@
             <div class="collapse navbar-collapse flex-grow-0 ms-1" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 ">
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark" href="welcome.php">Home</a>
+                        <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="AllProduct.php">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="#">Refund</a>
+                        <a class="nav-link text-dark " href="../contact/">Contact</a>
                     </li>
-                    <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="Contact.php">Contact</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
@@ -155,7 +151,7 @@
                         <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="Login.php"><i class="fa-regular fa-user"></i></a>
+                        <a class="nav-link text-dark " href="../login/"><i class="fa-regular fa-user"></i></a>
                     </li>
                 </ul>
             </div>

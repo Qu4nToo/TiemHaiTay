@@ -70,7 +70,7 @@
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
-            <a href="welcome.php" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
+            <a href="../" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
                 <img class="img-fluid" src="./img/lopoXoaPhong.png" width="30%" height="30%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
@@ -141,18 +141,14 @@
             <div class="collapse navbar-collapse flex-grow-0 ms-1" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 ">
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark" href="welcome.php">Home</a>
+                        <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="AllProduct.php">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="#">Refund</a>
+                        <a class="nav-link text-dark " href="../contact/">Contact</a>
                     </li>
-                    <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="Contact.php">Contact</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
@@ -164,7 +160,7 @@
                         <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="Login.php"><i class="fa-regular fa-user"></i></a>
+                        <a class="nav-link text-dark " href="../login/"><i class="fa-regular fa-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -315,7 +311,7 @@
                     </style>
                     <div class="boxDescription d-flex " id="1" style="width: 230px; height: fit-content;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="grey"
-                            class="bi bi-truck rounded p-2 mr-3" viewBox="0 0 16 16" style="1ckground-color: #EDEDED;">
+                            class="bi bi-truck rounded p-2 mr-3" viewBox="0 0 16 16" style="background-color: #EDEDED;">
                             <path
                                 d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                         </svg>

@@ -62,8 +62,8 @@
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
-            <a href="welcome.php" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
-                <img class="img-fluid" src="./img/lopoXoaPhong.png" width="30%" height="30%" alt=""
+            <a href="./" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
+                <img class="img-fluid" src="./assets/img/lopoXoaPhong.png" width="30%" height="30%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
             </a>
@@ -133,16 +133,13 @@
             <div class="collapse navbar-collapse flex-grow-0 ms-1" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 ">
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark" href="welcome.php">Home</a>
+                        <a class="nav-link text-dark" href="./">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="AllProduct.php">All Product</a>
+                        <a class="nav-link text-dark " href="./allproduct">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="#">Refund</a>
-                    </li>
-                    <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="Contact.php">Contact</a>
+                        <a class="nav-link text-dark " href="./contact/">Contact</a>
                     </li>
 
                 </ul>
@@ -156,7 +153,7 @@
                         <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="Login.php"><i class="fa-regular fa-user"></i></a>
+                        <a class="nav-link text-dark " href="./login/"><i class="fa-regular fa-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -165,15 +162,15 @@
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
-                <img src="./img/uudai1.png"
+                <img src="./assets/img/uudai1.png"
                     class="d-block w-50 m-auto mb-4" alt="...">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-                <img src="./img/uudai2.png" class="d-block w-50 m-auto mb-4"
+                <img src="./assets/img/uudai2.png" class="d-block w-50 m-auto mb-4"
                     alt="...">
             </div>
             <div class="carousel-item">
-                <img src="./img/uudai3.png"
+                <img src="./assets/img/uudai3.png"
                     class="d-block w-50 m-auto mb-4" alt="...">
             </div>
         </div>
@@ -455,42 +452,42 @@
                     <div class="row justify-content-center">
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/iPad-9-wifi.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/iPad-9-wifi.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad 9 WIFI</h5>
                                     <p class="card-text h5 m-0">pin: 98%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:97%</p>
                                     <p class="card-text h5 m-0">Price: 4.900.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/ipad.png" class="card-img-top" alt="...">
+                                <img src="./assets/img/ipad.png" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad pro M1</h5>
                                     <p class="card-text h5 m-0">pin: 90%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:90%</p>
                                     <p class="card-text h5 m-0">Price: 9.000.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/ipad-air-11-inch-m2-wifi.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/ipad-air-11-inch-m2-wifi.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad Air 6 M2</h5>
                                     <p class="card-text h5 m-0">pin: 95%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:98%</p>
                                     <p class="card-text h5 m-0">Price: 14.590.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
@@ -503,42 +500,42 @@
                     <div class="row justify-content-center">
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/ipad-air-13-inch-m2-wifi.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/ipad-air-13-inch-m2-wifi.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad Air 6 M2</h5>
                                     <p class="card-text h5 m-0">pin: 97%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:99%</p>
                                     <p class="card-text h5 m-0">Price: 16.900.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/ipad-pro-11-inch-m4-wifi.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/ipad-pro-11-inch-m4-wifi.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad pro M4</h5>
                                     <p class="card-text h5 m-0">pin: 92%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:93%</p>
                                     <p class="card-text h5 m-0">Price: 20.900.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/ipad-pro-13-inch-m4-wifi.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/ipad-pro-13-inch-m4-wifi.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad pro M4</h5>
                                     <p class="card-text h5 m-0">pin: 94%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:97%</p>
                                     <p class="card-text h5 m-0">Price: 29.490.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
@@ -551,42 +548,42 @@
                     <div class="row justify-content-center">
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/iPad-Gen-10.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/iPad-Gen-10.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad 10</h5>
                                     <p class="card-text h5 m-0">pin: 90%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:94%</p>
                                     <p class="card-text h5 m-0">Price: 4.900.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/iPad-9-5G.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/iPad-9-5G.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad 9 5G</h5>
                                     <p class="card-text h5 m-0">pin: 93%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:98%</p>
                                     <p class="card-text h5 m-0">Price: 4.290.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-10 mt-3">
                             <div class="card p-4">
-                                <img src="./img/ipad-air-5-wifi.jpg" class="card-img-top" alt="...">
+                                <img src="./assets/img/ipad-air-5-wifi.jpg" class="card-img-top" alt="...">
                                 <div class="card-body pt-0">
                                     <h5 class="card-title text-center">Ipad Air 5</h5>
                                     <p class="card-text h5 m-0">pin: 94%</p>
                                     <p class="card-text h5 m-0">Ngoại hình:92%</p>
                                     <p class="card-text h5 m-0">Price: 9.900.000vnđ</p>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a href="productDetailed.php" class="btn bg-dark text-white">Buy now</a>
+                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
                                     </div>
                                 </div>
                             </div>
@@ -619,7 +616,7 @@
                     <div class="card mb-3 p-3" style="width: 100%;background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./img/hp-victus-16.png" class="img-fluid rounded-start" alt="...">
+                                <img src="./assets/img/hp-victus-16.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
@@ -635,7 +632,7 @@
                     <div class="card mb-3 p-3" style="width: 100%; background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./img/man-hinh-uu-dai.png" height="140" class="img-fluid rounded-start"
+                                <img src="./assets/img/man-hinh-uu-dai.png" height="140" class="img-fluid rounded-start"
                                     alt="...">
                             </div>
                             <div class="col-md-6">
@@ -653,7 +650,7 @@
                     <div class="card mb-3 p-3" style="width: 100%; background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./img/laptop-uu-dai.png" class="img-fluid rounded-start" alt="...">
+                                <img src="./assets/img/laptop-uu-dai.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
@@ -670,7 +667,7 @@
                     <div class="card mb-3 p-3" style="width: 100%; background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./img/voucher_thang_5.png" class="img-fluid rounded-start" alt="...">
+                                <img src="./assets/img/voucher_thang_5.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
