@@ -23,10 +23,11 @@
     <title>Liên Hệ</title>
 </head>
 <style>
-    .error-message{
+    .error-message {
         color: red;
         font-weight: bold;
     }
+
     .ft-icon a:hover {
         background: rgba(178, 192, 201, 0.758);
     }
@@ -58,11 +59,10 @@
 </style>
 
 <body onload="renderProduct()">
-<nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
-        style="margin-bottom: 10px;">
+    <nav class=" navbar navbar-expand-lg sticky-top bg-white border-bottom border-dark" style="margin-bottom: 10px;">
         <div class="container alight-item-center">
-            <a href="welcome.php" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
-                <img class="img-fluid" src="./img/lopoXoaPhong.png" width="30%" height="30%" alt=""
+            <a href="../" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
+                <img class="img-fluid" src="../assets/img/lopoXoaPhong.png" width="20%" height="20%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
             </a>
@@ -74,9 +74,9 @@
             <div class="collapse navbar-collapse flex-grow-1 mt-1" id="navbarSupportedContent">
                 <div class="dropdown col-lg-12 mb-lg-0">
                     <style>
-                    .search-nav::placeholder {
-                        font-size: 14px;
-                    }
+                        .search-nav::placeholder {
+                            font-size: 14px;
+                        }
                     </style>
                     <input type="search" placeholder="Tìm kiếm gì đó ở đây"
                         class="dropdown-toggle search-nav w-75 rounded p-1" data-bs-toggle="dropdown" id="search">
@@ -85,17 +85,17 @@
                     </ul>
                 </div>
                 <script>
-                function renderProduct() {
-                    fetch('https://665892f55c36170526490b38.mockapi.io/TiemHaiTay', {
+                    function renderProduct() {
+                        fetch('https://665892f55c36170526490b38.mockapi.io/TiemHaiTay', {
                             method: 'GET',
                             headers: {
                                 'content-type': 'application/json'
                             },
                         })
-                        .then(response => response.json())
-                        .then(data => {
-                            let product = '';
-                            data.map(value => product += `
+                            .then(response => response.json())
+                            .then(data => {
+                                let product = '';
+                                data.map(value => product += `
     <li id="products"><a class="dropdown-item border-0" href="${value.url}" >
         <div class="mt-2 mb-2" style="width: auto;">
             <div class="row g-0">
@@ -109,24 +109,24 @@
             </div>
           </div>
     </a></li>`);
-                            document.getElementById('products-list').innerHTML = product;
-                        })
-                        .catch(error => console.log(error));
-                }
-                $(document).ready(function() {
-                    $("#search").on("keyup", function() {
-                        var value = $(this).val().toLowerCase();
-                        $("#products-list li").filter(function() {
-                            var x = document.getElementById('products-list');
-                            x.style.display = 'block'
-                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                            var y = document.getElementById('search').value;
-                            if (y == '') {
-                                document.getElementById('products-list').style.display = 'none'
-                            }
+                                document.getElementById('products-list').innerHTML = product;
+                            })
+                            .catch(error => console.log(error));
+                    }
+                    $(document).ready(function () {
+                        $("#search").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#products-list li").filter(function () {
+                                var x = document.getElementById('products-list');
+                                x.style.display = 'block'
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                var y = document.getElementById('search').value;
+                                if (y == '') {
+                                    document.getElementById('products-list').style.display = 'none'
+                                }
+                            });
                         });
                     });
-                });
                 </script>
             </div>
             <div class="collapse navbar-collapse flex-grow-0 ms-1" id="navbarSupportedContent">
@@ -144,9 +144,7 @@
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 d-flex flex-row justify-content-between col-3">
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="#"><i class="fa-regular fa-heart"></i></a>
-                    </li>
+                    
                     <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
                         <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
@@ -157,284 +155,134 @@
             </div>
         </div>
     </nav>
-         <!-- sidebar -->
-         <div class="container">
+    <!-- sidebar -->
+    <div class="container">
+
+        <div class="container p-5">
             <div class="row">
-                <!-- trái -->    
-                <!-- Bên Phải -->
-                <!-- Form đăng nhập -->
-                <!-- Checkout Section Begin -->
-         <section class="checkout spad">
-            <div class="container">
-                <div class="checkout__form">
-                    <h4 style="color: red;font-weight: bold;">Thông tin liên hệ</h4>
-                    <form id="checkoutForm" action="#">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-6">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Tên<span>*</span></p>
-                                            <input type="text" id="firstNameInput">
-                                            <div class="error-message" id="firstNameErrorMessage"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Họ<span>*</span></p>
-                                            <input type="text" id="lastNameInput">
-                                            <div class="error-message" id="lastNameErrorMessage"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Quốc gia<span>*</span></p>
-                                    <input type="text" id="nationInput">
-                                    <div class="error-message" id="nationErrorMessage"></div>
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Địa chỉ<span>*</span></p>
-                                    <input type="text" placeholder="Địa chỉ thường trú" class="checkout__input__add" id="adresseInput">
-                                    <div class="error-message" id="adresseErrorMessage"></div>
-                                    <input type="text" placeholder="Căn hộ, suite, unite ect (tùy chọn)" id="suiteInput">
-                                    <div class="error-message" id="suiteErrorMessage"></div>
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Quê quán<span>*</span></p>
-                                    <input type="text" id="countryInput">
-                                    <div class="error-message" id="countryErrorMessage"></div>
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Nội dung<span>*</span></p>
-                                    <input type="text" id="zipInput">
-                                    <div class="error-message" id="zipErrorMessage"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Điện thoại<span>*</span></p>
-                                            <input type="text" id="numInput">
-                                            <div class="error-message" id="numErrorMessage"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Email<span>*</span></p>
-                                            <input type="text" id="emailInput">
-                                            <div class="error-message" id="emailErrorMessage"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-4 col-md-6">
-                                <div class="checkout__order">
-                                    <center><h4 style="color: red;font-weight: bold;">Đồng ý chấp thuận?</h4></center>
-                                    <center><h5 style="font-weight: bold;">Bạn có chắc chắn với lưu thay đổi?</h5></center>
-                                    <button type="button" class="site-btn" onclick="validateForm()">Đồng ý</button>
-                                </div>
-                            </div>
+                <!-- Contact Information -->
+                <div class="col-md-6 bg-primary text-white p-5">
+                    <h2>Contact Information</h2>
+                    <p>If you have any questions, feel free to contact us through the details below:</p>
+                    <ul class="list-unstyled">
+                        <li><strong>Phone:</strong> +84 123 456 789</li>
+                        <li><strong>Email:</strong> contact@example.com</li>
+                        <li><strong>Address:</strong> 123 Main Street, Hanoi, Vietnam</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-md-6 p-5">
+                    <h2>Contact Form</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Write your message"
+                                required></textarea>
+                        </div>
+                        <div class="container d-flex ">
+                            <button type="button" class="btn btn-outline-primary mx-auto">Confirm</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </section>
-        <!-- Checkout Section End -->           
-            </div>
         </div>
+        <footer class="bg-dark text-white text-center text-lg-start">
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12 mb-4 mb-md-0 ft-item">
+                        <h5 class="text-uppercase">Tiệm hai tay</h5>
+                        <p>Địa chỉ: 1234 đường Chi Dân, Quận Đống Đa, Hà Nam</p>
+                        <p>Hotline:1900 9827</p>
+                        <p>Email: tiemhaitay@gmail.com</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Dịch vụ</h5>
 
-    <footer class="bg-dark text-white text-center text-lg-start">
-        <div class="container p-5">
-            <div class="row">
-                <div class="col-lg-5 col-md-12 mb-4 mb-md-0 ft-item">
-                    <h5 class="text-uppercase">Tiệm hai tay</h5>
-                    <p>Địa chỉ: 1234 đường Chi Dân, Quận Đống Đa, Hà Nam</p>
-                    <p>Hotline:1900 9827</p>
-                    <p>Email: tiemhaitay@gmail.com</p>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Dịch vụ</h5>
+                        <ul class="list-unstyled mb-0 ft-item">
+                            <li>
+                                <a href="#!" class="">Điện thoại</a>
+                            </li>
+                            <li>
+                                <a href="#!">Laptop</a>
+                            </li>
+                            <li>
+                                <a href="#!">Loa</a>
+                            </li>
+                            <li>
+                                <a href="#!">Camera</a>
+                            </li>
+                            <li>
+                                <a href="#!">Ipad</a>
+                            </li>
+                            <li>
+                                <a href="#!">Các sẩn phẩm khác</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Bạn cần hỗ trợ?</h5>
 
-                    <ul class="list-unstyled mb-0 ft-item">
-                        <li>
-                            <a href="#!" class="">Điện thoại</a>
-                        </li>
-                        <li>
-                            <a href="#!">Laptop</a>
-                        </li>
-                        <li>
-                            <a href="#!">Loa</a>
-                        </li>
-                        <li>
-                            <a href="#!">Camera</a>
-                        </li>
-                        <li>
-                            <a href="#!">Ipad</a>
-                        </li>
-                        <li>
-                            <a href="#!">Các sẩn phẩm khác</a>
-                        </li>
-                    </ul>
+                        <ul class="list-unstyled mb-0 ft-item">
+                            <li>
+                                <a href="#!">Cách đặt hàng?</a>
+                            </li>
+                            <li>
+                                <a href="#!">Bạn muốn hoàn hàng?</a>
+                            </li>
+                            <li>
+                                <a href="#!">Bạn cần tư vấn?</a>
+                            </li>
+                            <li>
+                                <a href="#!">Tại sao bạn nên chọn chúng tôi?</a>
+                            </li>
+                            <li>
+                                <a href="#!">Chính sách bảo hành & đãi ngộ?</a>
+                            </li>
+                            <li>
+                                <a href="#!">Feedback từ khách hàng đã mua tại cửa hàng.</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Bạn cần hỗ trợ?</h5>
+                <footer class="text-center">
+                    <!-- Grid container -->
+                    <div class="container pt-4">
+                        <!-- Section: Social media -->
+                        <section class="mb-4 ft-icon">
+                            <!-- Facebook -->
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                                role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
 
-                    <ul class="list-unstyled mb-0 ft-item">
-                        <li>
-                            <a href="#!">Cách đặt hàng?</a>
-                        </li>
-                        <li>
-                            <a href="#!">Bạn muốn hoàn hàng?</a>
-                        </li>
-                        <li>
-                            <a href="#!">Bạn cần tư vấn?</a>
-                        </li>
-                        <li>
-                            <a href="#!">Tại sao bạn nên chọn chúng tôi?</a>
-                        </li>
-                        <li>
-                            <a href="#!">Chính sách bảo hành & đãi ngộ?</a>
-                        </li>
-                        <li>
-                            <a href="#!">Feedback từ khách hàng đã mua tại cửa hàng.</a>
-                        </li>
-                    </ul>
-                </div>
+                            <!-- Twitter -->
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                                role="button" data-mdb-rippler-color="dark"><i class="fab fa-twitter"></i></a>
+
+                            <!-- Google -->
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                                role="button" data-mdb-ripple-color="dark"><i class="fab fa-tiktok"></i></a>
+
+                            <!-- Instagram -->
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                                role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+
+                        </section>
+                    </div>
+                </footer>
             </div>
-            <footer class="text-center">
-                <!-- Grid container -->
-                <div class="container pt-4">
-                    <!-- Section: Social media -->
-                    <section class="mb-4 ft-icon">
-                        <!-- Facebook -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                            role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
-
-                        <!-- Twitter -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                            role="button" data-mdb-rippler-color="dark"><i class="fab fa-twitter"></i></a>
-
-                        <!-- Google -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                            role="button" data-mdb-ripple-color="dark"><i class="fab fa-tiktok"></i></a>
-
-                        <!-- Instagram -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                            role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
-
-                    </section>
-                </div>
-            </footer>
-        </div>
-    </footer>
-
-            <!-- Scripts Float Animation -->
-            <script>
-                $(document).ready(function(){
-                  $('.user-support').click(function(event) {
-                    $('.social-button-content').slideToggle();
-                  });
-                  });
-              </script>
-            <!-- End Scripts Float Animation -->
-            <!-- Scripts Validate -->
-            <script>
-                function validateForm() {              
-                    var firstName = firstNameInput.value.trim();
-                    var lastName = lastNameInput.value.trim();
-                    var email = emailInput.value.trim();
-                    var nation= nationInput.value.trim();
-                    var adress = adresseInput.value.trim();
-                    var suite = suiteInput.value.trim();
-                    var country = countryInput.value.trim();
-                    var zip = zipInput.value.trim();
-                    var number = numInput.value.trim();
-                    var isValid = true;
-        
-                    if (firstName === '') {
-                        firstNameErrorMessage.textContent = 'Vui lòng nhập tên của bạn.';
-                        isValid = false;
-                    } else {
-                        firstNameErrorMessage.textContent = '';
-                    }
-        
-                    if (lastName === '') {
-                        lastNameErrorMessage.textContent = 'Vui lòng nhập họ của bạn.';
-                        isValid = false;
-                    } else {
-                        lastNameErrorMessage.textContent = '';
-                    }
-        
-                    if (nation === '') {
-                        nationErrorMessage.textContent = 'Vui lòng nhập quốc gia của bạn.';
-                        isValid = false;
-                    } else {
-                        nationErrorMessage.textContent = '';
-                    }
-        
-                    if (adress === '') {
-                        adresseErrorMessage.textContent = 'Vui lòng nhập địa chỉ của bạn.';
-                        isValid = false;
-                    } else {
-                        adresseErrorMessage.textContent = '';
-                    }
-        
-                    if (suite === '') {
-                        suiteErrorMessage.textContent = 'Vui lòng nhập nơi của bạn.';
-                        isValid = false;
-                    } else {
-                        suiteErrorMessage.textContent = '';
-                    }
-        
-                    if (country === '') {
-                        countryErrorMessage.textContent = 'Vui lòng nhập quê quán của bạn.';
-                        isValid = false;
-                    } else {
-                        countryErrorMessage.textContent = '';
-                    }
-        
-                    if (zip === '') {
-                        zipErrorMessage.textContent = 'Vui lòng nhập nội dung của bạn.';
-                        isValid = false;
-                    } else {
-                        zipErrorMessage.textContent = '';
-                    }
-        
-                    if (number === '') {
-                        numErrorMessage.textContent = 'Vui lòng nhập số điện thoại của bạn.';
-                        isValid = false;
-                    } else {
-                        numErrorMessage.textContent = '';
-                    }
-        
-                    if (!validateEmail(emailInput.value)) {
-                        emailErrorMessage.textContent = 'Vui lòng nhập một địa chỉ email hợp lệ.';
-                        isValid = false;
-                    } else {
-                        emailErrorMessage.textContent = '';
-                    }
-        
-                    if (isValid) {
-                        alert('Đặt hàng thành công!');
-                    }
-        
-                }
-            
-                function validateEmail(email) {
-                    var emailRegex = /\S+@\S+\.\S+/;
-                    return emailRegex.test(email);
-                }       
-            </script>
-            <!-- End Scripts Validate -->
-     <!-- Js Plugins -->
-     <script src="scripts/jquery-3.3.1.min.js"></script>
-     <script src="scripts/bootstrap.min.js"></script>
-     <script src="scripts/jquery.nice-select.min.js"></script>
-     <script src="scripts/jquery-ui.min.js"></script>
-     <script src="scripts/jquery.slicknav.js"></script>
-     <script src="scripts/mixitup.min.js"></script>
-     <script src="scripts/owl.carousel.min.js"></script>
-     <script src="scripts/main.js"></script>
+        </footer>
 </body>
 
 </html>
