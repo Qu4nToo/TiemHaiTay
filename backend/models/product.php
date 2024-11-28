@@ -1,6 +1,5 @@
     <?php
     require_once __DIR__ . '/../config/database.php';
-
     function getAllProducts() {
         $conn = getDatabaseConnection();
         $result = $conn->query("SELECT * FROM product");

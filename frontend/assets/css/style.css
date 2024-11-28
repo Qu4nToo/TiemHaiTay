@@ -1,0 +1,14 @@
+
+.modal-dialog {
+    max-width: 700px; /* Giới hạn chiều rộng */
+    margin: 30px auto; /* Đặt modal vào giữa màn hình */
+}
+
+.modal-content {
+    max-height: 80vh; /* Giới hạn chiều cao của modal */
+    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá dài */
+}
+
+.modal-body {
+    padding-bottom: 20px; /* Cung cấp không gian thêm cho thanh cuộn */
+}
