@@ -62,7 +62,7 @@
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
             <a href="welcome.php" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
-                <img class="img-fluid" src="./img/lopoXoaPhong.png" width="30%" height="30%" alt=""
+                <img class="img-fluid" src="../assets/img/lopoXoaPhong.png" width="20%" height="20%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
             </a>
@@ -148,9 +148,7 @@
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 d-flex flex-row justify-content-between col-3">
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="#"><i class="fa-regular fa-heart"></i></a>
-                    </li>
+                    
                     <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
                         <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
