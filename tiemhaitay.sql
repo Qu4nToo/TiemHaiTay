@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th10 29, 2024 lúc 12:50 PM
+-- Thời gian đã tạo: Th10 29, 2024 lúc 06:38 PM
 -- Phiên bản máy phục vụ: 8.2.0
 -- Phiên bản PHP: 8.2.13
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `brands`;
 CREATE TABLE IF NOT EXISTS `brands` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `order_details` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `ram` varchar(50) DEFAULT NULL,
   `rom` varchar(50) DEFAULT NULL,
   `warranty` varchar(100) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL,
   `card` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `description` text,
@@ -102,7 +102,10 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id`, `product_type`, `product_name`, `ram`, `rom`, `warranty`, `price`, `card`, `status`, `description`) VALUES
-('prod_6749adfd84b5d3.50335805', 'adu', 'c', '1', '2', '12', 1.00, '	Intel Iris X', NULL, 'abc');
+('prod_6749e26a42c334.07038656', 'Laptop', 'Laptop hp victus 16', '16GB', '512GB', '12', 15000000, '1650Ti', 1, 'Tuyet voi'),
+('prod_6749e4e6cc8607.11541519', 'Laptop', 'Laptop hp victus 15', '16GB', '512GB', '12', 15000000, '1650', 1, 'tuyet voi'),
+('prod_6749e50df33773.63436246', 'Laptop', 'Laptop hp victus 14', '16GB', '512GB', '12', 15000000, '1650Ti', 1, 'ok'),
+('prod_6749ea20b166e5.32476187', 'Laptop', 'Laptop hp victus 13', '16GB', '512GB', '12', 15000000, '1650Ti', 1, '123');
 
 -- --------------------------------------------------------
 

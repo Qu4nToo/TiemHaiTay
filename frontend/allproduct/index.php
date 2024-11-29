@@ -2,9 +2,6 @@
 require_once '../../backend/models/product.php';
 $products = getAllProducts();
 ?>
-<?php
-echo '';
-?>
 <!DOCTYPE html>
 <html lang="en">
 

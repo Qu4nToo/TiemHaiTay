@@ -1,14 +1,14 @@
 <?php
-include '../components/header.php';
-require_once '../../../backend/models/user.php';
+include './components/header.php';
+require_once '../../backend/models/user.php';
 $users = getAllUsers();
 ?>
 <div class="container-fluid">
-    <?php include '../components/navbar.php'; ?>
+    <?php include './components/navbar.php'; ?>
     <div class="row mt-4">
         <div class="col-md-12">
             <h2 class="text-center">Quản lý Người Dùng</h2>
-            <form action="../../../backend/routes/apiUser.php?action=addUser" method="POST" class="mb-4">
+            <form action="../../backend/routes/apiUser.php?action=addUser" method="POST" class="mb-4">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
                         <input type="text" name="name" class="form-control" placeholder="Tên người dùng" required>
@@ -50,7 +50,7 @@ $users = getAllUsers();
                                     data-name="<?= $user['name'] ?>" data-phone="<?= $user['phone'] ?>"
                                     data-email="<?= $user['email'] ?>" data-address="<?= $user['address'] ?>"
                                     data-toggle="modal" data-target="#editModal">Sửa</button>
-                                <a href="../../../backend/routes/apiUser.php?action=deleteUser&id=<?= $user['id'] ?>"
+                                <a href="../../backend/routes/apiUser.php?action=deleteUser&id=<?= $user['id'] ?>"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">Xóa</a>
                             </td>
@@ -66,7 +66,7 @@ $users = getAllUsers();
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="editForm" action="../../../backend/routes/apiUser.php?action=editUser" method="POST">
+            <form id="editForm" action="../../backend/routes/apiUser.php?action=editUser" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Sửa người dùng</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -99,7 +99,7 @@ $users = getAllUsers();
     </div>
 </div>
 
-<?php include '../components/footer.php'; ?>
+<?php include './components/footer.php'; ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
