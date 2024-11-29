@@ -1,14 +1,53 @@
-
 .modal-dialog {
-    max-width: 700px; /* Giới hạn chiều rộng */
-    margin: 30px auto; /* Đặt modal vào giữa màn hình */
+    max-width: 500px; /* Giảm chiều rộng của modal */
+    margin: 30px auto; 
 }
 
 .modal-content {
-    max-height: 80vh; /* Giới hạn chiều cao của modal */
-    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá dài */
+    max-height: 70vh; /* Giảm chiều cao tối đa của modal */
+    overflow-y: auto;
 }
 
 .modal-body {
-    padding-bottom: 20px; /* Cung cấp không gian thêm cho thanh cuộn */
+    padding-bottom: 15px; /* Giảm khoảng cách dưới */
 }
+
+.modal-header .modal-title {
+    font-size: 1.25rem; /* Điều chỉnh kích thước tiêu đề */
+    font-weight: bold;
+}
+
+//admin - order - nut chon nguoi dung
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-selection {
+    height: 35px;  /* Giảm chiều cao */
+    border-radius: 4px;
+    border-color: #ced4da;
+    padding: 5px;  /* Thêm padding để các phần tử bên trong không bị sát nhau */
+}
+
+.select2-selection__rendered {
+    line-height: 25px;  /* Giảm chiều cao của chữ trong ô chọn */
+}
+
+.select2-selection__arrow {
+    height: 35px;
+    border-radius: 4px;
+    right: 8px; /* Đặt vị trí của mũi tên sát phải hơn một chút */
+}
+
+.select2-container--default .select2-results__option {
+    padding: 8px 16px; /* Giảm padding của các option trong dropdown */
+    font-size: 14px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    background: #007bff;
+}
+
+
+//navbar
+
