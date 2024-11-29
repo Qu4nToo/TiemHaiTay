@@ -10,7 +10,6 @@ $products = getAllProducts();
     <div class="row mt-4">
         <div class="col-md-12">
             <h2 class="text-center">Quản lý Sản phẩm</h2>
-
             <form action="../../../backend/routes/api.php?action=add" method="POST" class="mb-4">
                 <div class="row">
                     <!-- Loại sản phẩm -->
