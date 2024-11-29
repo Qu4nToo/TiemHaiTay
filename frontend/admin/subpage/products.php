@@ -12,49 +12,37 @@ $products = getAllProducts();
             <h2 class="text-center">Quản lý Sản phẩm</h2>
             <form action="../../../backend/routes/api.php?action=add" method="POST" class="mb-4">
                 <div class="row">
-                    <!-- Loại sản phẩm -->
                     <div class="col-12 col-md-2 mb-3">
                         <input type="text" name="product_type" class="form-control" placeholder="Loại sản phẩm"
                             required>
                     </div>
-                    <!-- Tên sản phẩm -->
                     <div class="col-12 col-md-2 mb-3">
                         <input type="text" name="product_name" class="form-control" placeholder="Tên sản phẩm" required>
                     </div>
-                    <!-- RAM -->
                     <div class="col-12 col-md-1 mb-3">
                         <input type="text" name="ram" class="form-control" placeholder="RAM">
                     </div>
-                    <!-- ROM -->
                     <div class="col-12 col-md-1 mb-3">
                         <input type="text" name="rom" class="form-control" placeholder="ROM">
                     </div>
-                    <!-- Bảo hành -->
                     <div class="col-12 col-md-1 mb-3">
                         <input type="text" name="warranty" class="form-control" placeholder="Bảo hành">
                     </div>
-                    <!-- Giá -->
                     <div class="col-12 col-md-2 mb-3">
                         <input type="number" step="0.01" name="price" class="form-control" placeholder="Giá">
                     </div>
-                    <!-- Card -->
                     <div class="col-12 col-md-1 mb-3">
                         <input type="text" name="card" class="form-control" placeholder="Card">
                     </div>
-                    <!-- Còn hàng -->
                     <div class="col-12 col-md-1 mb-3">
                         <input type="checkbox" name="status" value="1"> Còn hàng
                     </div>
-                    <!-- Mô tả -->
                     <div class="col-12 mb-3">
                         <textarea name="description" class="form-control" placeholder="Mô tả"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Thêm sản phẩm</button>
             </form>
-
-
-            <!-- Bảng sản phẩm -->
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -102,8 +90,6 @@ $products = getAllProducts();
         </div>
     </div>
 </div>
-
-<!-- Modal sửa sản phẩm -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

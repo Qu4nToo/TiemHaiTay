@@ -8,7 +8,7 @@
     function getProductById($id) {
         $conn = getDatabaseConnection();
         $stmt = $conn->prepare("SELECT * FROM product WHERE id = ?");
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("s", $id);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }

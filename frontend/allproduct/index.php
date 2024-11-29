@@ -1,3 +1,10 @@
+<?php
+require_once '../../backend/models/product.php';
+$products = getAllProducts();
+?>
+<?php
+echo '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +24,7 @@
     <link rel="stylesheet" href="../js/app.js">
     <link rel="stylesheet" href="../css/app.css">
     <title>Trang chủ</title>
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
@@ -37,7 +44,7 @@
                 card.classList.remove('hover');
             });
         });
-    </script>
+    </script> -->
 </head>
 <style>
     .ft-icon a:hover {
@@ -111,20 +118,17 @@
     #products-list {
         display: none;
     }
+    .product-card:hover {
+        box-shadow: black;
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 25px;
+    }
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
 </style>
-<script>
-    const cards = document.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        card.addEventListener('mouseover', () => {
-            card.classList.add('hover');
-        });
-
-        card.addEventListener('mouseout', () => {
-            card.classList.remove('hover');
-        });
-    });
-</script>
 
 <body onload="renderProduct()">
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
@@ -224,20 +228,10 @@
             </div>
         </div>
     </nav>
-    <!--Than bai -------------------- -->
-    <!-- <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <div class="container alight-item-center">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a style="text-decoration: none;" href="#">Home</a></li>
-                <li class="breadcrumb-item " aria-current="page">All Product</li>
-            </ol>
-        </div>
-    </nav> -->
-    <!-- sidebar -->
     <div class="container mb-5">
         <div class="row">
             <!-- trái -->
-            <div class="col-md-3">
+            <div class="col-md-3 border-end">
                 <strong style="margin-left: 30px;">Danh mục sản phẩm</strong>
                 <div>
                     <hr>
@@ -303,93 +297,41 @@
             <!-- phải -->
             <div class="allProductBox col-md-9" style="background-color: #ffffff; height: auto">
                 <div class="productbox" id="myTable">
-
-                    <div class="row row-cols-1 row-cols-md-3 g-4 container m-auto" style="max-width: 1150px;">
-                        <div class="col">
-                            <div class="card">
-                                <img src="../assets/img/laptop avita.png" class="card-img-top p-3" alt="">
-                                <div class="card-body text-center">
-                                    <p class="card-text">Loại sản phẩm: Laptop</p>
-                                    <h4 class="card-title allproduct-card-title fs-5">Laptop Avita PURA A+ AF14A3VNF56F
-                                        Black</h4>
-                                    <p class="card-text">CPU: Intel® Core™ i5-1235U</p>
-                                    <p class="card-text">Ram: 8GB DDR4 3200MHz </p>
-                                    <p class="card-text">Rom: 512GB SSD SATA M.2</p>
-                                    <p class="card-text">Bảo hành: 12 tháng</p>
-                                    <p class="card-text text-danger fw-bold">Price: 4.490.000 VND</p>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="btn-group gap-2" role="group" aria-label="Basic example"
-                                            style="float: right;">
-                                            <a href="../productdetail/"><button type="button"
-                                                    class="btn btnAllProduct-viewdetail bg-dark text-light">View
-                                                    detail</button></a>
-                                            <a href="ProductPay.php"><button type="button"
-                                                    class="btn btnAllProduct-buy">Buy</button></a>
-
+                    <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 container-fluid"
+                        style="max-width: 1150px;">
+                        <?php foreach ($products as $product): ?>
+                            <a href="../productdetail?id=<?= $product['id']?>" class="text-decoration-none p-2" id="<?= $product['id']?>">
+                                <div class="col product-card">
+                                    <div class="card">
+                                        <img src="../assets/img/laptop avita.png" class="card-img-top p-3 pb-0" alt="">
+                                        <div class="px-5 pb-5">
+                                            <h4 class="card-title allproduct-card-title fs-5">
+                                                <?= $product['product_name'] ?>
+                                            </h4>
+                                            <div class="d-flex gap-2 ">
+                                                <p class="card-text m-0 rounded-pill bg-dark text-white px-1">Ram:
+                                                    <?= $product['ram'] ?>
+                                                </p>
+                                                <p class="card-text m-0 rounded-pill bg-dark text-white px-1">Rom:
+                                                    <?= $product['rom'] ?>
+                                                </p>
+                                            </div>
+                                            
+                                            <p class="card-text text-danger fw-bold fs-5 m-1"><?= $product['price'] ?> VND</p>
+                                            <p class="card-text ms-1">Bảo hành: <?= $product['warranty'] ?> tháng</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <img src="../assets/img/laptop avita.png" class="card-img-top p-3" alt="">
-                                <div class="card-body text-center">
-                                    <p class="card-text">Loại sản phẩm: Laptop</p>
-                                    <h4 class="card-title allproduct-card-title fs-5">Laptop Avita PURA A+ AF14A3VNF56F
-                                        Black</h4>
-                                    <p class="card-text">CPU: Intel® Core™ i5-1235U</p>
-                                    <p class="card-text">Ram: 8GB DDR4 3200MHz </p>
-                                    <p class="card-text">Rom: 512GB SSD SATA M.2</p>
-                                    <p class="card-text">Bảo hành: 12 tháng</p>
-                                    <p class="card-text text-danger fw-bold">Price: 4.490.000 VND</p>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="btn-group gap-2" role="group" aria-label="Basic example"
-                                            style="float: right;">
-                                            <a href="../productdetail/"><button type="button"
-                                                    class="btn btnAllProduct-viewdetail bg-dark text-light">View
-                                                    detail</button></a>
-                                            <a href="ProductPay.php"><button type="button"
-                                                    class="btn btnAllProduct-buy">Buy</button></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <img src="../assets/img/laptop avita.png" class="card-img-top p-3" alt="">
-                                <div class="card-body text-center">
-                                    <p class="card-text">Loại sản phẩm: Laptop</p>
-                                    <h4 class="card-title allproduct-card-title fs-5">Laptop Avita PURA A+ AF14A3VNF56F
-                                        Black</h4>
-                                    <p class="card-text">CPU: Intel® Core™ i5-1235U</p>
-                                    <p class="card-text">Ram: 8GB DDR4 3200MHz </p>
-                                    <p class="card-text">Rom: 512GB SSD SATA M.2</p>
-                                    <p class="card-text">Bảo hành: 12 tháng</p>
-                                    <p class="card-text text-danger fw-bold">Price: 4.490.000 VND</p>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="btn-group gap-2" role="group" aria-label="Basic example"
-                                            style="float: right;">
-                                            <a href="../productdetail/"><button type="button"
-                                                    class="btn btnAllProduct-viewdetail bg-dark text-light">View
-                                                    detail</button></a>
-                                            <a href="ProductPay.php"><button type="button"
-                                                    class="btn btnAllProduct-buy">Buy</button></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-
-
-
             </div>
+
+
+
         </div>
+    </div>
     </div>
     <!-- footer -->
 
