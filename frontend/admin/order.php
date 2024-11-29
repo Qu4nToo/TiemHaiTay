@@ -1,18 +1,18 @@
 <?php
-include '../components/header.php';
-require_once '../../../backend/models/order.php';
-require_once '../../../backend/models/user.php';
+include './components/header.php';
+require_once '../../backend/models/order.php';
+require_once '../../backend/models/user.php';
 
 $orders = getAllOrders();
 $users = getAllUsers();
 ?>
-<link rel="stylesheet" href="../../../frontend/assets/css/style.css">
+<link rel="stylesheet" href="../../frontend/assets/css/style.css">
 <div class="container-fluid">
-    <?php include '../components/navbar.php'; ?>
+    <?php include './components/navbar.php'; ?>
     <div class="row mt-4">
         <div class="col-md-12">
             <h2 class="text-left mb-5">Quản lý Đơn Hàng</h2>
-            <form action="../../../backend/routes/apiOrder.php?action=addOrder" method="POST" class="mb-4">
+            <form action="../../backend/routes/apiOrder.php?action=addOrder" method="POST" class="mb-4">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
                         <input type="datetime-local" name="order_date" class="form-control" required>
@@ -65,7 +65,7 @@ $users = getAllUsers();
                                     data-total_price="<?= $order['total_price'] ?>" data-status="<?= $order['status'] ?>"
                                     data-user_id="<?= $order['user_id'] ?>" data-toggle="modal"
                                     data-target="#editModal">Sửa</button>
-                                <a href="../../../backend/routes/apiOrder.php?action=deleteOrder&id=<?= $order['id'] ?>"
+                                <a href="../../backend/routes/apiOrder.php?action=deleteOrder&id=<?= $order['id'] ?>"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')">Xóa</a>
                             </td>
@@ -81,7 +81,7 @@ $users = getAllUsers();
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="editForm" action="../../../backend/routes/apiOrder.php?action=editOrder" method="POST">
+            <form id="editForm" action="../../backend/routes/apiOrder.php?action=editOrder" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Sửa đơn hàng</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -123,7 +123,7 @@ $users = getAllUsers();
     </div>
 </div>
 
-<?php include '../components/footer.php'; ?>
+<?php include './components/footer.php'; ?>
 
 <script>
 

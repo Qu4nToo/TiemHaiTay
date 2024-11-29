@@ -6,19 +6,19 @@ function handleRequest($action) {
         case 'add':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 addProduct($_POST);
-                header('Location: ../../frontend/admin/subpage/products.php');
+                header('Location: ../../frontend/admin/products.php');
             }
             break;
         case 'edit':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 updateProduct($_POST['id'], $_POST);
-                header('Location: ../../frontend/admin/subpage/products.php');
+                header('Location: ../../frontend/admin/products.php');
             }
             break;
         case 'delete':
             if (isset($_GET['id'])) {
                 deleteProduct($_GET['id']);
-                header('Location: ../../frontend/admin/subpage/products.php');
+                header('Location: ../../frontend/admin/products.php');
             }
             break;
         default:
