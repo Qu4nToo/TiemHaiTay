@@ -9,7 +9,7 @@ function handleRequest($action) {
                 $imagePath = uploadImage($_FILES['image']);
                 $_POST['image'] = $imagePath;
                 addProduct($_POST);
-                header('Location: ../../frontend/admin/subpage/products.php');
+                header('Location: ../../frontend/admin/products.php');
             }
             break;
         case 'edit':
@@ -20,13 +20,13 @@ function handleRequest($action) {
                     $_POST['image'] = $imagePath;
                 }
                 updateProduct($_POST['id'], $_POST);
-                header('Location: ../../frontend/admin/subpage/products.php');
+                header('Location: ../../frontend/admin/products.php');
             }
             break;
         case 'delete':
             if (isset($_GET['id'])) {
                 deleteProduct($_GET['id']);
-                header('Location: ../../frontend/admin/subpage/products.php');
+                header('Location: ../../frontend/admin/products.php');
             }
             break;
         default:

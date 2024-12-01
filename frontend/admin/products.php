@@ -1,16 +1,16 @@
 <?php
-include '../components/header.php';
-require_once '../../../backend/models/product.php';
+include './components/header.php';
+require_once '../../backend/models/product.php';
 $products = getAllProducts();
 ?>
 
 <div class="container-fluid">
-    <?php include '../components/navbar.php'; ?>
-    <?php include '../components/header.php'; ?>
+    <?php include './components/navbar.php'; ?>
+    <?php include './components/header.php'; ?>
     <div class="row mt-4">
         <div class="col-md-12">
             <h2 class="text-center">Quản lý Sản phẩm</h2>
-            <form action="../../../backend/routes/api.php?action=add" method="POST" class="mb-4">
+            <form action="../../backend/routes/api.php?action=add" method="POST" class="mb-4">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
                         <input type="text" name="product_type" class="form-control" placeholder="Loại sản phẩm"
@@ -83,7 +83,7 @@ $products = getAllProducts();
                                     data-warranty="<?= $product['warranty'] ?>" data-price="<?= $product['price'] ?>"
                                     data-card="<?= $product['card'] ?>" data-status="<?= $product['status'] ?>"
                                     data-description="<?= $product['description'] ?>">Sửa</button>
-                                <a href="../../../backend/routes/api.php?action=delete&id=<?= $product['id'] ?>"
+                                <a href="../../backend/routes/api.php?action=delete&id=<?= $product['id'] ?>"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
                             </td>
@@ -97,7 +97,7 @@ $products = getAllProducts();
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="editForm" action=" ../../../backend/routes/api.php?action=edit" method="POST">
+            <form id="editForm" action=" ../../backend/routes/api.php?action=edit" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Sửa sản phẩm</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -152,7 +152,7 @@ $products = getAllProducts();
     </div>
 </div>
 
-<?php include '../components/footer.php'; ?>
+<?php include './components/footer.php'; ?>
 
 <script>
     document.querySelectorAll('.edit-btn').forEach(btn => {
