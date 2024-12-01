@@ -8,9 +8,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="./">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="./subpage/products">Sản phẩm</a></li>
-                <li class="nav-item"><a class="nav-link" href="./subpage/users">Khách hàng</a></li>
-                <li class="nav-item"><a class="nav-link" href="./subpage/order">Đơn hàng</a></li>
+                <li class="nav-item"><a class="nav-link" href="./products">Sản phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="./users">Khách hàng</a></li>
+                <li class="nav-item"><a class="nav-link" href="./order">Đơn hàng</a></li>
             </ul>
         </div>
     </div>

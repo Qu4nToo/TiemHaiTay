@@ -15,30 +15,11 @@
     function addProduct($data) {
         $conn = getDatabaseConnection();
         $randomId = substr(uniqid('prod_', true), 0, 32);
-        $stmt = $conn->prepare("INSERT INTO product (id, product_type, product_name, ram, rom, warranty, price, card, status, description) 
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO product (id, product_type, product_name, ram, rom, warranty, price, card, status, description, image) 
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param(
-            "sssssdisss", // Các kiểu dữ liệu: 's' cho string, 'd' cho double, 'i' cho integer
+            "sssssdissss", // Thêm 's' cho image
             $randomId, 
-            $data['product_type'], 
-            $data['product_name'], 
-            $data['ram'], 
-            $data['rom'], 
-            $data['warranty'], 
-            $data['price'], 
-            $data['card'],
-            $data['status'], 
-            $data['description']
-        );
-        return $stmt->execute();
-    }
-    function updateProduct($id, $data) {
-        $conn = getDatabaseConnection();
-        $stmt = $conn->prepare("UPDATE product SET 
-                                product_type = ?, product_name = ?, ram = ?, rom = ?, warranty = ?, price = ?, card = ?, status = ?, description = ? 
-                                WHERE id = ?");
-        $stmt->bind_param(
-            "sssssdisss", 
             $data['product_type'], 
             $data['product_name'], 
             $data['ram'], 
@@ -48,10 +29,33 @@
             $data['card'], 
             $data['status'], 
             $data['description'], 
+            $data['image'] // Trường mới
+        );
+        return $stmt->execute();
+    }
+    
+    function updateProduct($id, $data) {
+        $conn = getDatabaseConnection();
+        $stmt = $conn->prepare("UPDATE product SET 
+                                product_type = ?, product_name = ?, ram = ?, rom = ?, warranty = ?, price = ?, card = ?, status = ?, description = ?, image = ? 
+                                WHERE id = ?");
+        $stmt->bind_param(
+            "sssssdissss", // Thêm 's' cho image
+            $data['product_type'], 
+            $data['product_name'], 
+            $data['ram'], 
+            $data['rom'], 
+            $data['warranty'], 
+            $data['price'], 
+            $data['card'], 
+            $data['status'], 
+            $data['description'], 
+            $data['image'], // Trường mới
             $id
         );
         return $stmt->execute();
     }
+    
 
     function deleteProduct($id) {
         $conn = getDatabaseConnection();
