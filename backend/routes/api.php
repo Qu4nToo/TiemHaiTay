@@ -5,7 +5,7 @@ require_once '../controllers/userController.php';
 $action = $_GET['action'] ?? '';
 print_r($action);
 $userActions = ['addUser', 'editUser', 'deleteUser'];
-$productActions = ['add', 'edit', 'delete'];
+$productActions = ['add', 'edit', 'delete','editImage'];
 if (in_array($action, $userActions)) {
     handleRequestUser($action);
     exit;
@@ -16,4 +16,4 @@ if (in_array($action, $userActions)) {
     echo "Action không hợp lệ!";
     exit;
 }
-?>
+
