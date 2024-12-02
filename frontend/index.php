@@ -271,7 +271,9 @@ session_start();
     <div id="carouselExampleDark2" class="carousel carousel-dark slide p-4 border-bottom border-dark"
         data-bs-ride="carousel" style="background-color: #EDEDED;">
         <div class="carousel-inner">
-            <?php foreach ($products as $index => $product): ?>
+            <?php foreach ($products as $index => $product): 
+                $img='./assets/img/'.$product['image'];
+                ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>" data-bs-interval="10000">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -280,7 +282,7 @@ session_start();
                                     class="text-decoration-none p-2" id="<?= htmlspecialchars($product['id']) ?>">
                                     <div class="col product-card">
                                         <div class="card">
-                                            <img src="<?= htmlspecialchars($product['image'] ?? '../assets/img/default.png') ?>"
+                                            <img src="<?= htmlspecialchars($img) ?>"
                                                 class="card-img-top p-3 pb-0"
                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                             <div class="px-5 pb-5">
