@@ -49,6 +49,10 @@ $products = getAllProducts();
                     <div class="col-12 mb-3">
                         <textarea name="description" class="form-control" placeholder="Mô tả"></textarea>
                     </div>
+                    <div class="col-12 mb-3">
+                        <label for="image" class="form-label">Ảnh sản phẩm</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Thêm sản phẩm</button>
             </form>
