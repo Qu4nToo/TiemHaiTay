@@ -35,12 +35,13 @@ function addProduct($data)
         $data['card'],
         $data['status'],
         $data['description'],
-        $data['image'] 
+        $data['image']
     );
     return $stmt->execute();
 }
 function updateProduct($id, $data)
-{
+{   
+    
     $conn = getDatabaseConnection();
     $stmt = $conn->prepare("UPDATE product SET 
                                 product_type = ?, product_name = ?, screen = ?, cpu = ?, camera = ?, ram = ?, rom = ?, warranty = ?, price = ?, card = ?, status = ?, description = ?, image = ? 
@@ -72,4 +73,5 @@ function deleteProduct($id)
     $stmt->bind_param("s", $id);
     return $stmt->execute();
 }
+
 ?>

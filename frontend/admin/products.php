@@ -13,7 +13,7 @@ $products = getAllProducts();
             <form action="../../backend/routes/api.php?action=add" method="POST" class="mb-4">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
-                        <input type="text" name="product_type" class="form-control" placeholder="Loại sản phẩm"
+                        <input type="text" name="product_type" class="form-control" placeholder="Hãng"
                             required>
                     </div>
                     <div class="col-12 col-md-2 mb-3">
@@ -56,11 +56,11 @@ $products = getAllProducts();
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Thêm sản phẩm</button>
             </form>
-            <table class="table table-striped">
+            <table class="table table-striped align-middle">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Loại</th>
+                        <th>Image</th>
+                        <th>Hãng</th>
                         <th>Tên sản phẩm</th>
                         <th>Screen</th>
                         <th>CPU</th>
@@ -76,9 +76,11 @@ $products = getAllProducts();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($products as $product): ?>
+                    <?php foreach ($products as $product): 
+                        $img='../assets/img/'.$product['image'];
+                        ?>
                         <tr>
-                            <td><?= $product['id'] ?></td>
+                            <td><img src="<?= $img ?>" alt="123" width="100px" height="100px"></td>
                             <td><?= $product['product_type'] ?></td>
                             <td><?= $product['product_name'] ?></td>
                             <td><?= $product['screen'] ?></td>
@@ -92,7 +94,7 @@ $products = getAllProducts();
                             <td><?= $product['status'] ? 'Còn hàng' : 'Hết hàng' ?></td>
                             <td><?= $product['description'] ?></td>
                             <td>
-                                <button class="btn btn-warning btn-sm edit-btn" data-id="<?= $product['id'] ?>"
+                                <button class="btn btn-warning btn-sm edit-btn" data-id="<?= $product['id'] ?>" data-image="<?= $product['image'] ?>"
                                     data-type="<?= $product['product_type'] ?>" data-name="<?= $product['product_name'] ?>"
                                     data-screen="<?= $product['screen'] ?>" data-cpu="<?= $product['cpu'] ?>"
                                     data-camera="<?= $product['camera'] ?>"
@@ -121,6 +123,10 @@ $products = getAllProducts();
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id" id="edit-id">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Ảnh sản phẩm</label>
+                        <input type="file" name="image" id="edit-image" class="form-control" accept="image/*">
+                    </div>
                     <div class="mb-3">
                         <label for="edit-type" class="form-label">Loại sản phẩm</label>
                         <input type="text" name="product_type" id="edit-type" class="form-control" required>
@@ -199,6 +205,7 @@ $products = getAllProducts();
             document.getElementById('edit-card').value = this.dataset.card;
             document.getElementById('edit-status').checked = this.dataset.status === "1";
             document.getElementById('edit-description').value = this.dataset.description;
+            document.getElementById('edit-camera').value = this.dataset.camera;
             modal.show();
         });
     });

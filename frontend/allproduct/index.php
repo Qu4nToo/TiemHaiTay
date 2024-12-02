@@ -321,12 +321,15 @@ session_start();
             <div class="allProductBox col-md-9" style="background-color: #ffffff; height: auto">
                 <div class="productbox" id="myTable">
                     <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 container-fluid" style="max-width: 1150px;">
-                        <?php foreach ($products as $product): ?>
+                        <?php foreach ($products as $product):
+
+                            ?>
                             <a href="../productdetail?id=<?= $product['id'] ?>" class="text-decoration-none p-2"
                                 id="<?= $product['id'] ?>">
                                 <div class="col product-card">
                                     <div class="card">
-                                        <img src="../assets/img/laptop avita.png" class="card-img-top p-3 pb-0" alt="">
+                                        <img src="<?= $img = '../assets/img/' . $product['image']; ?>" class="card-img-top p-3 pb-0"
+                                            alt="">
                                         <div class="px-5 pb-5">
                                             <h4 class="card-title allproduct-card-title fs-5">
                                                 <?= $product['product_name'] ?>
@@ -342,7 +345,8 @@ session_start();
 
                                             <p class="card-text text-danger fw-bold fs-5 m-1">
                                                 <?= number_format($product['price'], decimals: 0, decimal_separator: ",", thousands_separator: ".") ?>
-                                                VND</p>
+                                                VND
+                                            </p>
                                             <p class="card-text ms-1">Bảo hành: <?= $product['warranty'] ?> tháng</p>
                                         </div>
                                     </div>
