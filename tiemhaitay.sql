@@ -1,9 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th10 29, 2024 lúc 06:38 PM
 -- Phiên bản máy phục vụ: 8.2.0
 -- Phiên bản PHP: 8.2.13
 
@@ -11,82 +6,59 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
 -- Cơ sở dữ liệu: `tiemhaitay`
---
+CREATE DATABASE IF NOT EXISTS `tiemhaitay`;
+USE `tiemhaitay`;
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `brands`
---
-
+-- Bảng `brands`
 DROP TABLE IF EXISTS `brands`;
 CREATE TABLE IF NOT EXISTS `brands` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `orders`
---
+-- Bảng `users`
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+-- Bảng `orders`
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` varchar(255) NOT NULL,
-  `user_id` int NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `order_date` datetime NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=67500 DEFAULT CHARSET=utf8mb3;
-
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `order_date`, `total_price`, `status`) VALUES
-('order_6749ad20a8cec6.92604825', 0, '2024-11-29 00:00:00', 23.00, 'shipped');
+  CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `order_details`
---
-
-DROP TABLE IF EXISTS `order_details`;
-CREATE TABLE IF NOT EXISTS `order_details` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `order_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `quantity` int NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `product`
---
-
+-- Bảng `product`
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
   `id` varchar(32) NOT NULL,
   `product_type` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `screen` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `cpu` varchar(255) DEFAULT NULL,
+  `camera` varchar(50) DEFAULT NULL,
   `ram` varchar(50) DEFAULT NULL,
   `rom` varchar(50) DEFAULT NULL,
   `warranty` varchar(100) DEFAULT NULL,
@@ -94,44 +66,23 @@ CREATE TABLE IF NOT EXISTS `product` (
   `card` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `description` text,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6752 DEFAULT CHARSET=utf8mb3;
-
---
--- Đang đổ dữ liệu cho bảng `product`
---
-
-INSERT INTO `product` (`id`, `product_type`, `product_name`, `ram`, `rom`, `warranty`, `price`, `card`, `status`, `description`) VALUES
-('prod_6749e26a42c334.07038656', 'Laptop', 'Laptop hp victus 16', '16GB', '512GB', '12', 15000000, '1650Ti', 1, 'Tuyet voi'),
-('prod_6749e4e6cc8607.11541519', 'Laptop', 'Laptop hp victus 15', '16GB', '512GB', '12', 15000000, '1650', 1, 'tuyet voi'),
-('prod_6749e50df33773.63436246', 'Laptop', 'Laptop hp victus 14', '16GB', '512GB', '12', 15000000, '1650Ti', 1, 'ok'),
-('prod_6749ea20b166e5.32476187', 'Laptop', 'Laptop hp victus 13', '16GB', '512GB', '12', 15000000, '1650Ti', 1, '123');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `users`
---
+-- Bảng `order_details`
+DROP TABLE IF EXISTS `order_details`;
+CREATE TABLE IF NOT EXISTS `order_details` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_id` varchar(255) NOT NULL,
+  `product_id` varchar(32) NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_orderdetails_orders` FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_orderdetails_product` FOREIGN KEY (`product_id`) REFERENCES `product`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone` varchar(15) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `address` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2147483648 DEFAULT CHARSET=utf8mb3;
-
---
--- Đang đổ dữ liệu cho bảng `users`
---
-
-INSERT INTO `users` (`id`, `name`, `phone`, `email`, `address`) VALUES
-('2147483647', 'DO MINH TRI 2', '0704651788', 'abc123@gmail.com', '2397 Phạm Thế Hiển p7q8'),
-('user_6749a353cc3719.12231855', 'phu ngu', '0704651788', 'dominhtri17812318@gmail.com', '2397 123123Phạm Thế Hiển p7q8');
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

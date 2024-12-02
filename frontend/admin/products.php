@@ -14,7 +14,7 @@ $products = getAllProducts();
                 enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
-                        <input type="text" name="product_type" class="form-control" placeholder="Loại sản phẩm"
+                        <input type="text" name="product_type" class="form-control" placeholder="Hãng"
                             required>
                     </div>
                     <div class="col-12 col-md-2 mb-3">
@@ -57,12 +57,11 @@ $products = getAllProducts();
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Thêm sản phẩm</button>
             </form>
-            <table class="table table-striped">
+            <table class="table table-striped align-middle">
                 <thead>
                     <tr>
-                        <th>Ảnh</th> <!-- Thêm cột ảnh -->
-                        <th>ID</th>
-                        <th>Loại</th>
+                        <th>Image</th>
+                        <th>Hãng</th>
                         <th>Tên sản phẩm</th>
                         <th>Screen</th>
                         <th>CPU</th>
@@ -77,13 +76,11 @@ $products = getAllProducts();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($products as $product): ?>
+                    <?php foreach ($products as $product): 
+                        $img='../assets/img/'.$product['image'];
+                        ?>
                         <tr>
-                            <td>
-                                <img src="../../frontend/assets/img/<?= $product['image'] ?>"
-                                    alt="<?= $product['product_name'] ?>" width="100" height="75">
-                            </td>
-                            <td><?= $product['id'] ?></td>
+                            <td><img src="<?= $img ?>" alt="123" width="100px" height="100px"></td>
                             <td><?= $product['product_type'] ?></td>
                             <td><?= $product['product_name'] ?></td>
                             <td><?= $product['screen'] ?></td>
@@ -95,18 +92,9 @@ $products = getAllProducts();
                             <td><?= $product['price'] ?> VND</td>
                             <td><?= $product['card'] ?></td>
                             <td><?= $product['status'] ? 'Còn hàng' : 'Hết hàng' ?></td>
+                            <td><?= $product['description'] ?></td>
                             <td>
-                                <!-- Nút Xem chi tiết -->
-                                <button class="btn btn-info btn-sm view-detail-btn" data-id="<?= $product['id'] ?>"
-                                    data-type="<?= $product['product_type'] ?>" data-name="<?= $product['product_name'] ?>"
-                                    data-price="<?= $product['price'] ?>" data-card="<?= $product['card'] ?>"
-                                    data-status="<?= $product['status'] ?>"
-                                    data-description="<?= $product['description'] ?>" data-image="<?= $product['image'] ?>"
-                                    data-ram="<?= $product['ram'] ?>" data-rom="<?= $product['rom'] ?>"
-                                    data-warranty="<?= $product['warranty'] ?>">
-                                    Xem chi tiết
-                                </button>
-                                <button class="btn btn-warning btn-sm edit-btn" data-id="<?= $product['id'] ?>"
+                                <button class="btn btn-warning btn-sm edit-btn" data-id="<?= $product['id'] ?>" data-image="<?= $product['image'] ?>"
                                     data-type="<?= $product['product_type'] ?>" data-name="<?= $product['product_name'] ?>"
                                     data-screen="<?= $product['screen'] ?>" data-cpu="<?= $product['cpu'] ?>"
                                     data-camera="<?= $product['camera'] ?>"
@@ -135,6 +123,10 @@ $products = getAllProducts();
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id" id="edit-id">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Ảnh sản phẩm</label>
+                        <input type="file" name="image" id="edit-image" class="form-control" accept="image/*">
+                    </div>
                     <div class="mb-3">
                         <label for="edit-type" class="form-label">Loại sản phẩm</label>
                         <input type="text" name="product_type" id="edit-type" class="form-control" required>
@@ -311,56 +303,8 @@ $products = getAllProducts();
             document.getElementById('edit-card').value = this.dataset.card;
             document.getElementById('edit-status').checked = this.dataset.status === "1";
             document.getElementById('edit-description').value = this.dataset.description;
+            document.getElementById('edit-camera').value = this.dataset.camera;
             modal.show();
         });
     });
-    document.querySelectorAll('.view-detail-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const modal = new bootstrap.Modal(document.getElementById('detailModal'));
-            document.getElementById('detail-name').value = this.dataset.name;
-            document.getElementById('detail-type').value = this.dataset.type;
-            document.getElementById('detail-price').value = this.dataset.price;
-            document.getElementById('detail-card').value = this.dataset.card;
-            document.getElementById('detail-status').value = this.dataset.status === "1" ? "Còn hàng" : "Hết hàng";
-            document.getElementById('detail-description').value = this.dataset.description;
-            document.getElementById('detail-ram').value = this.dataset.ram;
-            document.getElementById('detail-rom').value = this.dataset.rom;
-            document.getElementById('detail-warranty').value = this.dataset.warranty;
-            document.getElementById('detail-image').src = "../../frontend/assets/img/" + this.dataset.image;
-
-            document.getElementById('detail-name').disabled = true;
-            document.getElementById('detail-type').disabled = true;
-            document.getElementById('detail-price').disabled = true;
-            document.getElementById('detail-card').disabled = true;
-            document.getElementById('detail-status').disabled = true;
-            document.getElementById('detail-description').disabled = true;
-            document.getElementById('detail-ram').disabled = true;
-            document.getElementById('detail-rom').disabled = true;
-            document.getElementById('detail-warranty').disabled = true;
-            modal.show();
-        });
-    });
-
-    document.getElementById('editProductBtn').addEventListener('click', function () {
-        document.getElementById('detail-name').disabled = false;
-        document.getElementById('detail-type').disabled = false;
-        document.getElementById('detail-price').disabled = false;
-        document.getElementById('detail-card').disabled = false;
-        document.getElementById('detail-status').disabled = false;
-        document.getElementById('detail-description').disabled = false;
-        document.getElementById('detail-ram').disabled = false;
-        document.getElementById('detail-rom').disabled = false;
-        document.getElementById('detail-warranty').disabled = false;
-
-        this.textContent = 'Lưu thay đổi';
-        this.classList.remove('btn-warning');
-        this.classList.add('btn-success');
-    });
-    document.getElementById('edit-image-btn').addEventListener('click', function () {
-    const productId = document.getElementById('edit-id').value; // Lấy ID sản phẩm
-    document.getElementById('image-product-id').value = productId; // Gán ID vào hidden field trong form sửa ảnh
-
-    const modal = new bootstrap.Modal(document.getElementById('editImageModal'));
-    modal.show();
-});
 </script>
