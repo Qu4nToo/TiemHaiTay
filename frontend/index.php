@@ -1,3 +1,8 @@
+<?php
+require_once '../backend/models/product.php';
+$products = getAllProducts();
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +34,6 @@
 
     .ft-item li a:hover {
         text-decoration: underline;
-    }
-
-    .btn {
-        background-color: #EDEDED;
     }
 
     .nav-item:hover {
@@ -144,15 +145,38 @@
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-lg-0 d-flex flex-row justify-content-between col-3">
-                    
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                    </li>
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="./login/"><i class="fa-regular fa-user"></i></a>
-                    </li>
-                </ul>
+                <div class="nav-item fs-4 rounded-2 px-2">
+                    <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+                <div class="dropdown nav-item rounded-2">
+                    <?php
+                    if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
+                        ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <?php echo $_SESSION['name']; ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="./page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa
+                                    thông tin</a></li>
+                            <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="./page/logout.php">Đăng xuất</a></li>
+                        </ul>
+                    <?php } else { ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="./login">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="./register">Đăng ký</a></li>
+                        </ul>
+                    <?php } ?>
+                </div>
+                <!-- <div href='pages/edit_user.php?id=' class='btn '>
+                    <p class="fs-4 m-2"><?php echo $_SESSION['name']; ?></p class="font-sm">
+                </div>
+                <div href="pages/logout.php" class="btn btn-danger">Đăng xuất</div> -->
             </div>
         </div>
     </nav>
@@ -213,19 +237,19 @@
                         </div>
                         <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
-                            <img src="../frontend/assets/img/logo-asus.png" alt="" class="img-fluid w-25 h-25">
+                                <img src="../frontend/assets/img/logo-asus.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">Asus</p>
                             </button>
                         </div>
                         <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
-                            <img src="../frontend/assets/img/logo-macbook.png" alt="" class="img-fluid w-25 h-25">
+                                <img src="../frontend/assets/img/logo-macbook.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">MacBook</p>
                             </button>
                         </div>
                         <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
-                            <img src="../frontend/assets/img/logo-lenovo.png" alt="" class="img-fluid w-25 h-25">
+                                <img src="../frontend/assets/img/logo-lenovo.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">Lenovo</p>
                             </button>
                         </div>
@@ -247,150 +271,44 @@
     <div id="carouselExampleDark2" class="carousel carousel-dark slide p-4 border-bottom border-dark"
         data-bs-ride="carousel" style="background-color: #EDEDED;">
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/iPad-9-wifi.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad 9 WIFI</h5>
-                                    <p class="card-text h5 m-0">pin: 98%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:97%</p>
-                                    <p class="card-text h5 m-0">Price: 4.900.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
+            <?php foreach ($products as $index => $product): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>" data-bs-interval="10000">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 col-10 mt-3">
+                                <a href="../productdetail?id=<?= htmlspecialchars($product['id']) ?>"
+                                    class="text-decoration-none p-2" id="<?= htmlspecialchars($product['id']) ?>">
+                                    <div class="col product-card">
+                                        <div class="card">
+                                            <img src="<?= htmlspecialchars($product['image'] ?? '../assets/img/default.png') ?>"
+                                                class="card-img-top p-3 pb-0"
+                                                alt="<?= htmlspecialchars($product['product_name']) ?>">
+                                            <div class="px-5 pb-5">
+                                                <h4 class="card-title allproduct-card-title fs-5">
+                                                    <?= htmlspecialchars($product['product_name']) ?>
+                                                </h4>
+                                                <div class="d-flex gap-2">
+                                                    <p class="card-text m-0 rounded-pill bg-dark text-white px-1">Ram:
+                                                        <?= htmlspecialchars($product['ram']) ?>
+                                                    </p>
+                                                    <p class="card-text m-0 rounded-pill bg-dark text-white px-1">Rom:
+                                                        <?= htmlspecialchars($product['rom']) ?>
+                                                    </p>
+                                                </div>
+                                                <p class="card-text text-danger fw-bold fs-5 m-1">
+                                                    <?= number_format($product['price'], 0, ",", ".") ?> VND
+                                                </p>
+                                                <p class="card-text ms-1">Bảo hành:
+                                                    <?= htmlspecialchars($product['warranty']) ?> tháng</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/ipad.png" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad pro M1</h5>
-                                    <p class="card-text h5 m-0">pin: 90%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:90%</p>
-                                    <p class="card-text h5 m-0">Price: 9.000.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/ipad-air-11-inch-m2-wifi.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad Air 6 M2</h5>
-                                    <p class="card-text h5 m-0">pin: 95%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:98%</p>
-                                    <p class="card-text h5 m-0">Price: 14.590.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/ipad-air-13-inch-m2-wifi.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad Air 6 M2</h5>
-                                    <p class="card-text h5 m-0">pin: 97%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:99%</p>
-                                    <p class="card-text h5 m-0">Price: 16.900.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/ipad-pro-11-inch-m4-wifi.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad pro M4</h5>
-                                    <p class="card-text h5 m-0">pin: 92%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:93%</p>
-                                    <p class="card-text h5 m-0">Price: 20.900.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/ipad-pro-13-inch-m4-wifi.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad pro M4</h5>
-                                    <p class="card-text h5 m-0">pin: 94%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:97%</p>
-                                    <p class="card-text h5 m-0">Price: 29.490.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/iPad-Gen-10.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad 10</h5>
-                                    <p class="card-text h5 m-0">pin: 90%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:94%</p>
-                                    <p class="card-text h5 m-0">Price: 4.900.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/iPad-9-5G.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad 9 5G</h5>
-                                    <p class="card-text h5 m-0">pin: 93%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:98%</p>
-                                    <p class="card-text h5 m-0">Price: 4.290.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-10 mt-3">
-                            <div class="card p-4">
-                                <img src="./assets/img/ipad-air-5-wifi.jpg" class="card-img-top" alt="...">
-                                <div class="card-body pt-0">
-                                    <h5 class="card-title text-center">Ipad Air 5</h5>
-                                    <p class="card-text h5 m-0">pin: 94%</p>
-                                    <p class="card-text h5 m-0">Ngoại hình:92%</p>
-                                    <p class="card-text h5 m-0">Price: 9.900.000vnđ</p>
-                                    <div class="container d-flex justify-content-center mt-3">
-                                        <a href="./productdetail/" class="btn bg-dark text-white">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -401,9 +319,10 @@
             <span class="visually-hidden">Next</span>
         </button>
         <div class="container d-flex justify-content-center mt-3">
-            <button type="button" class="btn bg-dark text-white">Xem tất cả</button>
+            <a href="./allproduct/" class="btn bg-dark text-white">Xem tất cả</a>
         </div>
     </div>
+
     <div class="container-fluid pb-5 pt-0">
         <div class="container">
             <div class="container-fluid p-2 rounded-5"

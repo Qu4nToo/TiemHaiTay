@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +62,8 @@
 </style>
 
 <body onload="renderProduct()">
-    <nav class=" navbar navbar-expand-lg sticky-top bg-white border-bottom border-dark" style="margin-bottom: 10px;">
+<nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
+        style="margin-bottom: 10px;">
         <div class="container alight-item-center">
             <a href="../" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
                 <img class="img-fluid" src="../assets/img/lopoXoaPhong.png" width="20%" height="20%" alt=""
@@ -135,23 +139,46 @@
                         <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
                         <a class="nav-link text-dark " href="../contact/">Contact</a>
                     </li>
+
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-lg-0 d-flex flex-row justify-content-between col-3">
-                    
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                    </li>
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="../login/"><i class="fa-regular fa-user"></i></a>
-                    </li>
-                </ul>
+                <div class="nav-item fs-4 rounded-2 px-2">
+                    <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+                <div class="dropdown nav-item rounded-2">
+                    <?php
+                    if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
+                        ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <?php echo $_SESSION['name']; ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="../page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa thông tin</a></li>
+                            <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="../page/logout.php">Đăng xuất</a></li>
+                        </ul>
+                    <?php } else { ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="../login">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="../register">Đăng ký</a></li>
+                        </ul>
+                    <?php } ?>
+                </div>
+                <!-- <div href='pages/edit_user.php?id=' class='btn '>
+                    <p class="fs-4 m-2"><?php echo $_SESSION['name']; ?></p class="font-sm">
+                </div>
+                <div href="pages/logout.php" class="btn btn-danger">Đăng xuất</div> -->
             </div>
         </div>
     </nav>

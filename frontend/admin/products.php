@@ -20,6 +20,15 @@ $products = getAllProducts();
                         <input type="text" name="product_name" class="form-control" placeholder="Tên sản phẩm" required>
                     </div>
                     <div class="col-12 col-md-1 mb-3">
+                        <input type="text" name="screen" class="form-control" placeholder="screen">
+                    </div>
+                    <div class="col-12 col-md-1 mb-3">
+                        <input type="text" name="cpu" class="form-control" placeholder="CPU">
+                    </div>
+                    <div class="col-12 col-md-1 mb-3">
+                        <input type="text" name="camera" class="form-control" placeholder="Camera">
+                    </div>
+                    <div class="col-12 col-md-1 mb-3">
                         <input type="text" name="ram" class="form-control" placeholder="RAM">
                     </div>
                     <div class="col-12 col-md-1 mb-3">
@@ -53,6 +62,9 @@ $products = getAllProducts();
                         <th>ID</th>
                         <th>Loại</th>
                         <th>Tên sản phẩm</th>
+                        <th>Screen</th>
+                        <th>CPU</th>
+                        <th>Camera</th>
                         <th>RAM</th>
                         <th>ROM</th>
                         <th>Bảo hành</th>
@@ -69,6 +81,9 @@ $products = getAllProducts();
                             <td><?= $product['id'] ?></td>
                             <td><?= $product['product_type'] ?></td>
                             <td><?= $product['product_name'] ?></td>
+                            <td><?= $product['screen'] ?></td>
+                            <td><?= $product['cpu'] ?></td>
+                            <td><?= $product['camera'] ?></td>
                             <td><?= $product['ram'] ?></td>
                             <td><?= $product['rom'] ?></td>
                             <td><?= $product['warranty'] ?></td>
@@ -79,6 +94,8 @@ $products = getAllProducts();
                             <td>
                                 <button class="btn btn-warning btn-sm edit-btn" data-id="<?= $product['id'] ?>"
                                     data-type="<?= $product['product_type'] ?>" data-name="<?= $product['product_name'] ?>"
+                                    data-screen="<?= $product['screen'] ?>" data-cpu="<?= $product['cpu'] ?>"
+                                    data-camera="<?= $product['camera'] ?>"
                                     data-ram="<?= $product['ram'] ?>" data-rom="<?= $product['rom'] ?>"
                                     data-warranty="<?= $product['warranty'] ?>" data-price="<?= $product['price'] ?>"
                                     data-card="<?= $product['card'] ?>" data-status="<?= $product['status'] ?>"
@@ -111,6 +128,18 @@ $products = getAllProducts();
                     <div class="mb-3">
                         <label for="edit-name" class="form-label">Tên sản phẩm</label>
                         <input type="text" name="product_name" id="edit-name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-screen" class="form-label">Screen</label>
+                        <input type="text" name="screen" id="edit-screen" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-cpu" class="form-label">CPU</label>
+                        <input type="text" name="cpu" id="edit-cpu" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-camera" class="form-label">Camera</label>
+                        <input type="text" name="camera" id="edit-camera" class="form-control">
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -161,6 +190,8 @@ $products = getAllProducts();
             document.getElementById('edit-id').value = this.dataset.id;
             document.getElementById('edit-type').value = this.dataset.type;
             document.getElementById('edit-name').value = this.dataset.name;
+            document.getElementById('edit-screen').value = this.dataset.screen;
+            document.getElementById('edit-cpu').value = this.dataset.cpu;
             document.getElementById('edit-ram').value = this.dataset.ram;
             document.getElementById('edit-rom').value = this.dataset.rom;
             document.getElementById('edit-warranty').value = this.dataset.warranty;

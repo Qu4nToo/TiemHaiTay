@@ -1,6 +1,7 @@
 <?php
 require_once '../../backend/models/product.php';
 $products = getAllProducts();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,16 +116,17 @@ $products = getAllProducts();
     #products-list {
         display: none;
     }
+
     .product-card:hover {
         box-shadow: black;
         transform: scale(1.05);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         border-radius: 25px;
     }
-    .product-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
 
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 </style>
 
 <body onload="renderProduct()">
@@ -205,23 +207,47 @@ $products = getAllProducts();
                         <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
                         <a class="nav-link text-dark " href="../contact/">Contact</a>
                     </li>
+
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-lg-0 d-flex flex-row justify-content-between col-3">
-
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                    </li>
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="../login/"><i class="fa-regular fa-user"></i></a>
-                    </li>
-                </ul>
+                <div class="nav-item fs-4 rounded-2 px-2">
+                    <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+                <div class="dropdown nav-item rounded-2">
+                    <?php
+                    if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
+                        ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <?php echo $_SESSION['name']; ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="../page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa
+                                    thông tin</a></li>
+                            <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="../page/logout.php">Đăng xuất</a></li>
+                        </ul>
+                    <?php } else { ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="../login">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="../register">Đăng ký</a></li>
+                        </ul>
+                    <?php } ?>
+                </div>
+                <!-- <div href='pages/edit_user.php?id=' class='btn '>
+                    <p class="fs-4 m-2"><?php echo $_SESSION['name']; ?></p class="font-sm">
+                </div>
+                <div href="pages/logout.php" class="btn btn-danger">Đăng xuất</div> -->
             </div>
         </div>
     </nav>
@@ -294,10 +320,10 @@ $products = getAllProducts();
             <!-- phải -->
             <div class="allProductBox col-md-9" style="background-color: #ffffff; height: auto">
                 <div class="productbox" id="myTable">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 container-fluid"
-                        style="max-width: 1150px;">
+                    <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 container-fluid" style="max-width: 1150px;">
                         <?php foreach ($products as $product): ?>
-                            <a href="../productdetail?id=<?= $product['id']?>" class="text-decoration-none p-2" id="<?= $product['id']?>">
+                            <a href="../productdetail?id=<?= $product['id'] ?>" class="text-decoration-none p-2"
+                                id="<?= $product['id'] ?>">
                                 <div class="col product-card">
                                     <div class="card">
                                         <img src="../assets/img/laptop avita.png" class="card-img-top p-3 pb-0" alt="">
@@ -313,8 +339,10 @@ $products = getAllProducts();
                                                     <?= $product['rom'] ?>
                                                 </p>
                                             </div>
-                                            
-                                            <p class="card-text text-danger fw-bold fs-5 m-1"><?= $product['price'] ?> VND</p>
+
+                                            <p class="card-text text-danger fw-bold fs-5 m-1">
+                                                <?= number_format($product['price'], decimals: 0, decimal_separator: ",", thousands_separator: ".") ?>
+                                                VND</p>
                                             <p class="card-text ms-1">Bảo hành: <?= $product['warranty'] ?> tháng</p>
                                         </div>
                                     </div>
