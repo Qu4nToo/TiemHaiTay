@@ -1,20 +1,23 @@
 <?php
 require '../config/database.php';
 require '../models/product.php';
-function handleRequest($action) {
+function handleRequest($action)
+{
     switch ($action) {
         case 'add':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Lấy đường dẫn ảnh từ form
-                $imagePath = uploadImage($_FILES['image']);
-                $_POST['image'] = $imagePath;
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                    $imagePath = uploadImage($_FILES['image']);
+                    $_POST['image'] = $imagePath;
+                } else {
+                    $_POST['image'] = NULL;  
+                }
                 addProduct($_POST);
                 header('Location: ../../frontend/admin/products.php');
             }
             break;
         case 'edit':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Lấy đường dẫn ảnh từ form (nếu có upload)
                 $imagePath = uploadImage($_FILES['image']);
                 if ($imagePath) {
                     $_POST['image'] = $imagePath;
@@ -34,16 +37,21 @@ function handleRequest($action) {
             break;
     }
 }
-function uploadImage($file) {
+function uploadImage($file)
+{
     if ($file && $file['error'] == UPLOAD_ERR_OK) {
-        $targetDir = '../../frontend/assets/images/';
-        $fileName = uniqid() . '_' . basename($file['name']);
+        $targetDir = '../../frontend/assets/img/';
+        $fileName = basename($file['name']);
         $targetFilePath = $targetDir . $fileName;
         if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
-            return 'assets/images/' . $fileName; 
+            return $fileName;
         }
+    } else {
+        if ($file) {
+            echo "Lỗi tải tệp: " . $file['error'];
+        } else {
+            echo "Không có tệp nào được gửi.";
+        }
+        exit;
     }
-    return null; // Không có ảnh
 }
-
-
