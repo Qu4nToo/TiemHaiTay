@@ -14,15 +14,22 @@ function getUserById($id) {
     $stmt->execute();
     return $stmt->get_result()->fetch_assoc();
 }
-
+function getCustomerByEmail($email) {
+    $conn = getDatabaseConnection();
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("i", $email);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
 function addUser($data) {
     $conn = getDatabaseConnection();
     $randomId = substr(uniqid('user_', true), 0, 32);
-    $stmt = $conn->prepare("INSERT INTO users (id, name, phone, email, address) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (id, name, password,phone, email, address) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
-        "sssss", // Các kiểu dữ liệu: 's' cho string
+        "ssssss", // Các kiểu dữ liệu: 's' cho string
         $randomId, 
         $data['name'], 
+        $data['password'],
         $data['phone'], 
         $data['email'], 
         $data['address']
@@ -31,14 +38,16 @@ function addUser($data) {
 }
 function updateUser($id, $data) {
     $conn = getDatabaseConnection();
-    $stmt = $conn->prepare("UPDATE users SET name = ?, phone = ?, email = ?, address = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE users SET name = ?,password = ? , phone = ?, email = ?, address = ? WHERE id = ?");
     $stmt->bind_param(
-        "ssssi", 
+        "ssssss", 
         $data['name'], 
+        $data['password'],
         $data['phone'], 
         $data['email'], 
         $data['address'], 
         $id
+  
     );
     return $stmt->execute();
 }

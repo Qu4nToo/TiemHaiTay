@@ -2,6 +2,7 @@
 require_once '../../backend/models/product.php';
 $id = $_GET['id'];
 $products = getProductById($id);
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +76,7 @@ $products = getProductById($id);
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
-            <a href="welcome.php" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
+            <a href="../" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
                 <img class="img-fluid" src="../assets/img/lopoXoaPhong.png" width="20%" height="20%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
@@ -149,23 +150,47 @@ $products = getProductById($id);
                         <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
                         <a class="nav-link text-dark " href="../contact/">Contact</a>
                     </li>
+
                 </ul>
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-lg-0 d-flex flex-row justify-content-between col-3">
-
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                    </li>
-                    <li class="nav-item fs-4 rounded-2 ps-1 pe-1">
-                        <a class="nav-link text-dark " href="../login/"><i class="fa-regular fa-user"></i></a>
-                    </li>
-                </ul>
+                <div class="nav-item fs-4 rounded-2 px-2">
+                    <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+                <div class="dropdown nav-item rounded-2">
+                    <?php
+                    if (isset($_SESSION["name"]) && $_SESSION["name"] != "") {
+                        ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <?php echo $_SESSION['name']; ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="../page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa
+                                    thông tin</a></li>
+                            <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="../page/logout.php">Đăng xuất</a></li>
+                        </ul>
+                    <?php } else { ?>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="../login">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="../register">Đăng ký</a></li>
+                        </ul>
+                    <?php } ?>
+                </div>
+                <!-- <div href='pages/edit_user.php?id=' class='btn '>
+                    <p class="fs-4 m-2"><?php echo $_SESSION['name']; ?></p class="font-sm">
+                </div>
+                <div href="pages/logout.php" class="btn btn-danger">Đăng xuất</div> -->
             </div>
         </div>
     </nav>
@@ -199,7 +224,9 @@ $products = getProductById($id);
                 </div>
                 <div class="boxPrice d-flex productInfo pb-2">
                     <h2 style="font-size: 30;">Giá:&nbsp; </h2>
-                    <h6 style="font-size: 30px; font-weight: 700;" class="text-danger"><?= $products['price'] ?> VND
+                    <h6 style="font-size: 30px; font-weight: 700;" class="text-danger">
+                        <?= number_format($products['price'], decimals: 0, decimal_separator: ',', thousands_separator: '.') ?>
+                        VND
                     </h6>
                 </div>
 
@@ -213,11 +240,11 @@ $products = getProductById($id);
                         </style>
                         <div class=" detailed col rounded" style="background-color: #EDEDED; ">
                             <h6 class="info" style="color: #A7A7A7;">Screen size</h6>
-                            <h6 class="info" style="color: #000000;">16"</h6>
+                            <h6 class="info" style="color: #000000;"><?= $products['screen'] ?></h6>
                         </div>
                         <div class="detailed col rounded" style="background-color: #EDEDED;">
                             <h6 class="info" style="color: #A7A7A7;">CPU</h6>
-                            <h6 class="info" style="color: #000000;">Ryzen 5-5600H</h6>
+                            <h6 class="info" style="color: #000000;"><?= $products['cpu'] ?></h6>
                         </div>
                         <div class="detailed col rounded" style="background-color: #EDEDED;">
                             <h6 class="info" style="color: #A7A7A7;">Rom</h6>
@@ -228,7 +255,7 @@ $products = getProductById($id);
                     <div class="specificationBoxDetailed p-2 row align-items-start gap-3">
                         <div class=" detailed col rounded" style="background-color: #EDEDED; ">
                             <h6 class="info" style="color: #A7A7A7;">Camera</h6>
-                            <h6 class="info" style="color: #000000;">HD</h6>
+                            <h6 class="info" style="color: #000000;"><?= $products['camera'] ?></h6>
                         </div>
                         <div class="detailed col rounded" style="background-color: #EDEDED;">
                             <h6 class="info" style="color: #A7A7A7;">Ram</h6>
@@ -242,11 +269,9 @@ $products = getProductById($id);
                 </div>
 
                 <div class="describtionProduct mt-3">
-                    <p class="info productInfo descriptionProduct" style="font-size: 18px; color: #717171;">Laptop HP
-                        Victus 16
-                        đã qua sử dụng, tình trạng tổng thể tốt, ngoại hình tốt, bàn phím và camera sử dụng bình thường,
-                        đã test
-                        hết tất cả chức năng.</p>
+                    <p class="info productInfo descriptionProduct" style="font-size: 18px; color: #717171;">
+                        <?= $products['description'] ?>
+                    </p>
                 </div>
 
                 <div class="boxButtonProductDetailed d-flex gap-3">

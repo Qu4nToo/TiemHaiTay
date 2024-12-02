@@ -1,3 +1,47 @@
+<?php
+require_once '../../backend/models/user.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $data['name'] = $_POST['name'];
+    $data['phone'] = $_POST['phone'];
+    $data['address'] = $_POST['address'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['re-password'];
+
+    // Biến chứa thông báo lỗi
+
+
+    // Kiểm tra số điện thoại (chỉ chấp nhận 10 chữ số)
+    if (!preg_match('/^[0-9]{10}$/', $data['phone'])) {
+        $error1 = '';
+        $error1 = "Số điện thoại không hợp lệ! Số điện thoại phải có 10 chữ số.";
+    }
+    // Kiểm tra mật khẩu (ít nhất 1 ký tự thường, 1 chữ số, và tối thiểu 8 ký tự)
+    elseif (!preg_match('/^(?=.*[a-z])(?=.*\d).{8,}$/', $password)) {
+        $error2 = '';
+        $error2 = "Mật khẩu phải có ít nhất 8 ký tự, chứa ít nhất 1 ký tự thường và 1 chữ số.";
+    }
+    // Kiểm tra khớp mật khẩu và xác nhận mật khẩu
+    elseif ($password !== $confirmPassword) {
+        $error3 = '';
+        $error3 = "Mật khẩu và xác nhận mật khẩu không khớp!";
+    } elseif (getCustomerByEmail($email)) {
+        $error4 = "Email đã tồn tại! Vui lòng sử dụng email khác.";
+    } else {
+        // Hash mật khẩu trước khi lưu vào cơ sở dữ liệu
+        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        $data['email'] = $_POST['email'];
+        $addSuccess = addUser($data);
+        if ($addSuccess) {
+            header('Location: ../login');
+            exit();
+        } else {
+            $error = '';
+            $error = "Đăng ký không thành công. Vui lòng thử lại.";
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,59 +68,65 @@
     .error {
         color: #ff0000;
     }
+
     .gradient-custom {
-        background: linear-gradient(to right, #868f96 0%, #596164 100%);
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
     }
 </style>
 
-<body>
-    <div class="vh-100 gradient-custom">
+<body class=" gradient-custom">
+    <div>
         <div class="mask d-flex align-items-center h-100">
-            <div class="container h-auto">
-                <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="container">
+                <div class="row d-flex h-100  justify-content-center my-4">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
-                            <div class="card-body p-5">
-                                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-                                <form id="register-form" name="frmRegister" action="../login/">
-
+                            <div class="card-body p-5 pt-4">
+                                <h2 class="text-uppercase text-center mb-3">Create an account</h2>
+                                <?php if (isset($error))
+                                    echo "<div class='alert alert-danger'>$error</div>"; ?>
+                                <form id="register-form" name="frmRegister" action="" Method="POST">
                                     <div data-mdb-input-init class="form-outline mb-2">
-                                        <label class="form-label" for="username">User Name</label>
-                                        <input type="text" id="username" class="form-control form-control-lg"
-                                            name="user" placeholder="User name" />
+                                        <label class="form-label" for="email">User Name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Tên người dùng"
+                                            required>
                                     </div>
-
                                     <div data-mdb-input-init class="form-outline mb-2">
                                         <label class="form-label" for="email">Your Email</label>
-                                        <input type="email" id="email" class="form-control form-control-lg" name="email"
-                                            placeholder="Email" />
-
+                                        <input type="email" name="email" class="form-control" placeholder="Email"
+                                            required>
+                                        <?php if (isset($error4))
+                                            echo "<div class='alert alert-danger'>$error4</div>"; ?>
                                     </div>
-
+                                    <div data-mdb-input-init class="form-outline mb-2">
+                                        <label class="form-label" for="phoneNumber">Phone Number</label>
+                                        <input type="number" name="phone" class="form-control"
+                                            placeholder="Số điện thoại" required>
+                                        <?php if (isset($error1))
+                                            echo "<div class='alert alert-danger'>$error1</div>"; ?>
+                                    </div>
+                                    <div data-mdb-input-init class="form-outline mb-2">
+                                        <label class="form-label" for="Address">Address</label>
+                                        <input type="text" name="address" class="form-control" placeholder="Địa chỉ"
+                                            required>
+                                    </div>
                                     <div data-mdb-input-init class="form-outline mb-2">
                                         <label class="form-label" for="password">Password</label>
-                                        <input type="password" id="password" class="form-control form-control-lg"
-                                            name="password" placeholder="Password" />
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Mật khẩu" required>
+                                        <?php if (isset($error2))
+                                            echo "<div class='alert alert-danger'>$error2</div>"; ?>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-2">
                                         <label class="form-label" for="re-password">Repeat your password</label>
-                                        <input type="password" id="re-password" class="form-control form-control-lg"
-                                            name="re-password" placeholder="Re-password" />
+                                        <input type="password" class="form-control" name="re-password"
+                                            placeholder="Re-password" />
+                                        <?php if (isset($error3))
+                                            echo "<div class='alert alert-danger'>$error3</div>"; ?>
                                     </div>
-
-                                    <div class="form-check d-flex justify-content-center mb-3">
-                                        <input class="form-check-input me-2" type="checkbox" value=""
-                                            id="form2Example3cg" name="checkbox" />
-                                        <label class="form-check-label" for="dieukhoan">
-                                            Tôi đồng ý với <a href="#!" class="text-body"><u>Điều khoản
-                                                </u></a>
-                                        </label>
-                                    </div>
-
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit"
-                                            class="btn btn-primary btn-block mb-2"
+                                        <button type="submit" class="btn btn-primary btn-block mb-2"
                                             id="submitBtn">Register</button>
                                     </div>
 
@@ -95,71 +145,4 @@
             </div>
         </div>
     </div>
-    <script>
-        $().ready(function () {
-            $("#register-form").validate({
-                onfocusout: false,
-		        onkeyup: false,
-		        onclick: false,
-                rules: {
-                    "user": {
-                        required: true,
-                        maxlength: 15,
-                        noSpace: true
-                    },
-                    "password": {
-                        required: true,
-                        validatePassword: true,
-                        minlength: 8,
-                    },
-                    "re-password": {
-                        equalTo: "#password",
-                        minlength: 8
-                    },
-                    "email": {
-                        email: true,
-                        required: true
-                    },
-                    "checkbox": {
-                        required: true
-                    }
-                },
-                messages: {
-                    "user": {
-                        required: "Bắt buộc nhập User name",
-                        maxlength: "Hãy nhập tối đa 15 ký tự",
-                        noSpace: "Tên đăng nhập không được có dấu cách"
-                    },
-                    "password": {
-                        required: "Bắt buộc nhập password",
-                        minlength: "Hãy nhập ít nhất 8 ký tự",
-                        validatePassword: "Hãy nhập password từ 8 đến 16 ký tự bao gồm chữ hoa,chữ thường,chữ số,kí tự đặc biệt"
-                    },
-                    "re-password": {
-                        equalTo: "Hai password phải giống nhau",
-                        minlength: "Hãy nhập ít nhất 8 ký tự",
-                        
-                    },
-                    "email": {
-                        email: "hãy nhập đúng định dạng email",
-                        required: "hãy nhập email của bạn"
-                    },
-                    "checkbox": {
-                        required: "bạn phải đồng ý trước khi đăng ký."
-                    }
-                },
-            });
-        });
-        $("#register-form").on("submit", function (event) {
-            if($("#register-form").valid()){
-                alert("Đăng ký thành công");
-            }
-        });
-        jQuery.validator.addMethod("noSpace", function (value, element) {
-            return value.indexOf(" ") == -1;
-        }, "Space are not allowed");
-        $.validator.addMethod("validatePassword", function (value, element) {
-            return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*-_])[a-zA-Z0-9~!@#$%^&*-_]{8,16}$/.test(value);
-        });
-    </script>
 </body>

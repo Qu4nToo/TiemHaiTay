@@ -55,25 +55,3 @@ function uploadImage($file)
         exit;
     }
 }
-if ($_GET['action'] === 'editImage') {
-    if (isset($_FILES['image'])) {
-        $productId = $_POST['id'];
-        $image = $_FILES['image'];
-
-        // Kiểm tra nếu có ảnh được tải lên
-        if ($image['error'] === 0) {
-            // Xử lý lưu ảnh
-            $imagePath = 'path/to/your/image/directory/' . basename($image['name']);
-            move_uploaded_file($image['tmp_name'], $imagePath);
-
-            // Cập nhật ảnh vào cơ sở dữ liệu
-            $sql = "UPDATE products SET image = ? WHERE id = ?";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$image['name'], $productId]);
-
-            echo "Ảnh sản phẩm đã được cập nhật!";
-        }
-    }
-}
-
-
