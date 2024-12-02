@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th10 29, 2024 lúc 06:38 PM
+-- Thời gian đã tạo: Th12 02, 2024 lúc 06:23 AM
 -- Phiên bản máy phục vụ: 8.2.0
 -- Phiên bản PHP: 8.2.13
 
@@ -51,13 +51,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `fk_user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=67500 DEFAULT CHARSET=utf8mb3;
 
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `order_date`, `total_price`, `status`) VALUES
-('order_6749ad20a8cec6.92604825', 0, '2024-11-29 00:00:00', 23.00, 'shipped');
-
 -- --------------------------------------------------------
 
 --
@@ -87,6 +80,9 @@ CREATE TABLE IF NOT EXISTS `product` (
   `id` varchar(32) NOT NULL,
   `product_type` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `screen` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `cpu` varchar(255) DEFAULT NULL,
+  `camera` varchar(50) DEFAULT NULL,
   `ram` varchar(50) DEFAULT NULL,
   `rom` varchar(50) DEFAULT NULL,
   `warranty` varchar(100) DEFAULT NULL,
@@ -94,18 +90,9 @@ CREATE TABLE IF NOT EXISTS `product` (
   `card` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `description` text,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6752 DEFAULT CHARSET=utf8mb3;
-
---
--- Đang đổ dữ liệu cho bảng `product`
---
-
-INSERT INTO `product` (`id`, `product_type`, `product_name`, `ram`, `rom`, `warranty`, `price`, `card`, `status`, `description`) VALUES
-('prod_6749e26a42c334.07038656', 'Laptop', 'Laptop hp victus 16', '16GB', '512GB', '12', 15000000, '1650Ti', 1, 'Tuyet voi'),
-('prod_6749e4e6cc8607.11541519', 'Laptop', 'Laptop hp victus 15', '16GB', '512GB', '12', 15000000, '1650', 1, 'tuyet voi'),
-('prod_6749e50df33773.63436246', 'Laptop', 'Laptop hp victus 14', '16GB', '512GB', '12', 15000000, '1650Ti', 1, 'ok'),
-('prod_6749ea20b166e5.32476187', 'Laptop', 'Laptop hp victus 13', '16GB', '512GB', '12', 15000000, '1650Ti', 1, '123');
 
 -- --------------------------------------------------------
 
@@ -117,19 +104,12 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `phone` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `address` text NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2147483648 DEFAULT CHARSET=utf8mb3;
-
---
--- Đang đổ dữ liệu cho bảng `users`
---
-
-INSERT INTO `users` (`id`, `name`, `phone`, `email`, `address`) VALUES
-('2147483647', 'DO MINH TRI 2', '0704651788', 'abc123@gmail.com', '2397 Phạm Thế Hiển p7q8'),
-('user_6749a353cc3719.12231855', 'phu ngu', '0704651788', 'dominhtri17812318@gmail.com', '2397 123123Phạm Thế Hiển p7q8');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
