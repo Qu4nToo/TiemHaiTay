@@ -5,20 +5,20 @@ function handleRequestOrder($action) {
     switch ($action) {
         case 'addOrder':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                addOrder($_POST); // Thêm đơn hàng mới
-                header('Location: ../../frontend/admin/order.php'); // Chuyển hướng về trang quản lý đơn hàng
+                addOrder($_POST); 
+                header('Location: ../../frontend/admin/order.php'); 
             }
             break;
         case 'editOrder':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                updateOrder($_POST['id'], $_POST); // Cập nhật đơn hàng
-                header('Location: ../../frontend/admin/order.php'); // Chuyển hướng về trang quản lý đơn hàng
+                updateOrder($_POST['id'], $_POST); 
+                header('Location: ../../frontend/admin/order.php');
             }
             break;
         case 'deleteOrder':
             if (isset($_GET['id'])) {
-                deleteOrder($_GET['id']); // Xóa đơn hàng
-                header('Location: ../../frontend/admin/order.php'); // Chuyển hướng về trang quản lý đơn hàng
+                deleteOrder($_GET['id']); 
+                header('Location: ../../frontend/admin/order.php');
             }
             break;
         default:
