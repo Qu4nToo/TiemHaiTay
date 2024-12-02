@@ -14,6 +14,9 @@ $users = getAllUsers();
                         <input type="text" name="name" class="form-control" placeholder="Tên người dùng" required>
                     </div>
                     <div class="col-12 col-md-2 mb-3">
+                        <input type="text" name="password" class="form-control" placeholder="Mật khẩu" required>
+                    </div>
+                    <div class="col-12 col-md-2 mb-3">
                         <input type="number" name="phone" class="form-control" placeholder="Số điện thoại" required>
                     </div>
                     <div class="col-12 col-md-2 mb-3">
@@ -31,6 +34,7 @@ $users = getAllUsers();
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>password</th>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Address</th>
@@ -42,12 +46,13 @@ $users = getAllUsers();
                         <tr>
                             <td><?= $user['id'] ?></td>
                             <td><?= $user['name'] ?></td>
+                            <td><?= $user['password'] ?></td>
                             <td><?= $user['phone'] ?></td>
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['address'] ?></td>
                             <td>
                                 <button class="btn btn-warning btn-sm edit-btn" data-id="<?= $user['id'] ?>"
-                                    data-name="<?= $user['name'] ?>" data-phone="<?= $user['phone'] ?>"
+                                    data-name="<?= $user['name'] ?>" data-password="<?= $user['password'] ?>" data-phone="<?= $user['phone'] ?>"
                                     data-email="<?= $user['email'] ?>" data-address="<?= $user['address'] ?>"
                                     data-toggle="modal" data-target="#editModal">Sửa</button>
                                 <a href="../../backend/routes/apiUser.php?action=deleteUser&id=<?= $user['id'] ?>"

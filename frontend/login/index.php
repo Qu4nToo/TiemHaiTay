@@ -1,3 +1,36 @@
+<?php
+require_once '../../backend/models/user.php';
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    try {
+        // Gọi hàm getCustomerByEmail để lấy thông tin người dùng theo email
+        $user = getCustomerByEmail($email);
+        print_r($user);
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                // Lưu thông tin người dùng vào session
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['name'] = $user['name'];
+                // Điều hướng đến trang chủ
+                header("Location: ../");
+                exit();
+            } else {
+                $error1 = "Mật khẩu không đúng!";
+            }
+
+        } else {
+            $error2 = "Email không đúng!";
+        }
+    } catch (Exception $e) {
+        $error = "Có lỗi xảy ra: " . $e->getMessage();
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,42 +57,35 @@
     .error-text {
         color: red;
     }
+
     .gradient-custom {
-        background: linear-gradient(to right, #868f96 0%, #596164 100%);
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
     }
 </style>
 
 <body>
     <div id="content" class="d-flex justify-content-center align-items-center vh-100 gradient-custom">
-        <form id="login-form" class="p-5 rounded-4 border border-success bg-white" name="frmLogin" action="">
-            <h1 class="text-center mb-4">Login</h1>
+        <form id="login-form" class="p-5 rounded-4 border border-success bg-white" name="frmLogin" action="" method="POST">
+            <h1 class="text-center mb-2">Login</h1>
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="username" class="form-control" name="username" />
-                <label class="form-label" for="username">User Name</label>
-                <p id="error-text-1" class="error-text"></p>
+                <label class="form-label" for="username">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <?php if (isset($error2))
+                    echo "<div class='alert alert-danger'>$error2</div>";
+                    unset($error2);
+                ?>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="password" class="form-control" />
+            <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="password">Password</label>
-                <p id="error-text-2" class="error-text"></p>
+                <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+                <?php if (isset($error1))
+                    echo "<div class='alert alert-danger'>$error1</div>"; 
+                    unset($error1);
+                ?>  
             </div>
-
-            <div class="row mb-4">
-                <div class="col d-flex justify-content-center">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <a href="#!">Forgot password?</a>
-                </div>
-            </div>
-
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-block mb-4" onclick="return myFunction()">Sign
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign
                     in</button>
             </div>
 
@@ -72,38 +98,4 @@
             </div>
         </form>
     </div>
-    <script>
-        function myFunction() {
-            let u = document.getElementById("username").value;
-            let text = "";
-            var x = document.getElementById("error-text-1");
-            var y = document.getElementById("error-text-2");
-            if (u > 15 || u == 0 || u.indexOf(' ') !== -1) {
-                text = "tên tài khoản không hợp lệ";
-            }
-            else {
-                x.style.display = 'none';
-            }
-            document.getElementById("error-text-1").innerHTML = text;
-            let p = document.getElementById("password").value;
-            let text1 = "";
-            if (p < 8 || p == 0 || p.indexOf(' ') !== -1) {
-                text1 = "Mật khẩu không hợp lệ";
-            }
-            else {
-                y.style.display = 'none';
-            }
-            document.getElementById("error-text-2").innerHTML = text1;
-            var frm = document.frmLogin;
-            if (u == "admin" && p == "123"){
-                frm.action = './admin/';
-                frm.submit();
-            }
-            else if (text == "" && text1 == "") {
-                frm.action = '/';
-                frm.submit();
-            }
-
-        }
-    </script>
 </body>
