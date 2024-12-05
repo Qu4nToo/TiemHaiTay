@@ -18,7 +18,7 @@ function addProduct($data)
 {
     $conn = getDatabaseConnection();
     $randomId = substr(uniqid('prod_', true), 0, 32);
-    $stmt = $conn->prepare("INSERT INTO product (id, product_type, product_name, screen, cpu, camera, ram, rom, warranty, price, card, status, description,image) 
+    $stmt = $conn->prepare("INSERT INTO product (id, product_type, product_name, screen, cpu, camera, ram, rom, warranty, price, card, status, description, image) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
         "ssssssssdissss", // Các kiểu dữ liệu: 's' cho string, 'd' cho double, 'i' cho integer
@@ -35,7 +35,7 @@ function addProduct($data)
         $data['card'],
         $data['status'],
         $data['description'],
-        $data['image']
+        $data['image'],
     );
     return $stmt->execute();
 }

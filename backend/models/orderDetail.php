@@ -2,16 +2,16 @@
 require_once __DIR__ . '/../config/database.php';
 function getOrderDetailsByOrderId($orderId) {
     $conn = getDatabaseConnection();
-    $stmt = $conn->prepare("SELECT * FROM orderdetails WHERE order_id = ?");
+    $stmt = $conn->prepare("SELECT * FROM order_details WHERE order_id = ?");
     $stmt->bind_param("s", $orderId);
     $stmt->execute();
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 function addOrderDetail($data) {
     $conn = getDatabaseConnection();
-    $stmt = $conn->prepare("INSERT INTO orderdetails (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
     $stmt->bind_param(
-        "siid", // Các kiểu dữ liệu: 'i' cho integer, 'd' cho double
+        "ssid", // Các kiểu dữ liệu: 'i' cho integer, 'd' cho double
         $data['order_id'],
         $data['product_id'],
         $data['quantity'],
@@ -21,7 +21,7 @@ function addOrderDetail($data) {
 }
 function updateOrderDetail($id, $data) {
     $conn = getDatabaseConnection();
-    $stmt = $conn->prepare("UPDATE orderdetails SET order_id = ?, product_id = ?, quantity = ?, price = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE order_details SET order_id = ?, product_id = ?, quantity = ?, price = ? WHERE id = ?");
     $stmt->bind_param(
         "siidi", // Các kiểu dữ liệu: 'i' cho integer, 'd' cho double
         $data['order_id'],
@@ -34,7 +34,7 @@ function updateOrderDetail($id, $data) {
 }
 function deleteOrderDetail($id) {
     $conn = getDatabaseConnection();
-    $stmt = $conn->prepare("DELETE FROM orderdetails WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM order_details WHERE id = ?");
     $stmt->bind_param("s", $id);
     return $stmt->execute();
 }

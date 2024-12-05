@@ -1,20 +1,19 @@
 <?php
 require_once '../../backend/models/user.php';
 session_start();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
     try {
         // Gọi hàm getCustomerByEmail để lấy thông tin người dùng theo email
         $user = getCustomerByEmail($email);
-        print_r($user);
+        //print_r($user);
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 // Lưu thông tin người dùng vào session
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
+                $_SESSION['user_id'] = $user['id'];
                 // Điều hướng đến trang chủ
                 header("Location: ../");
                 exit();

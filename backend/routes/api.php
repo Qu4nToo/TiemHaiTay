@@ -15,4 +15,4 @@ if (in_array($action, $userActions)) {
     echo "Action không hợp lệ!";
     exit;
 }
-?>
+

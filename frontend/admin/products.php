@@ -10,7 +10,7 @@ $products = getAllProducts();
     <div class="row mt-4">
         <div class="col-md-12">
             <h2 class="text-center">Quản lý Sản phẩm</h2>
-            <form action="../../backend/routes/api.php?action=add" method="POST" class="mb-4">
+            <form action="../../backend/routes/api.php?action=add" method="POST" class="mb-4" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
                         <input type="text" name="product_type" class="form-control" placeholder="Hãng"
@@ -51,7 +51,7 @@ $products = getAllProducts();
                     </div>
                     <div class="col-12 mb-3">
                         <label for="image" class="form-label">Ảnh sản phẩm</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <input type="file" name="image" class="form-control"  accept="image/*">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Thêm sản phẩm</button>
@@ -71,7 +71,6 @@ $products = getAllProducts();
                         <th>Giá</th>
                         <th>Card</th>
                         <th>Trạng thái</th>
-                        <th>Mô tả</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -180,6 +179,104 @@ $products = getAllProducts();
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Chi tiết sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Layout responsive ngang -->
+                <div class="row">
+                    <div class="col-md-4 mb-3 text-center">
+                        <img id="detail-image" src="" alt="Product Image" class="img-fluid"
+                            style="max-width: 100%; height: auto;">
+                        <button type="button" id="edit-image-btn" class="btn btn-warning btn-sm mt-2">Sửa
+                            ảnh</button>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6">
+                                <label for="detail-name" class="form-label">Tên sản phẩm</label>
+                                <input type="text" id="detail-name" class="form-control" disabled>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="detail-type" class="form-label">Loại sản phẩm</label>
+                                <input type="text" id="detail-type" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6">
+                                <label for="detail-price" class="form-label">Giá</label>
+                                <input type="number" id="detail-price" class="form-control" disabled>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="detail-card" class="form-label">Card</label>
+                                <input type="text" id="detail-card" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6">
+                                <label for="detail-status" class="form-label">Trạng thái</label>
+                                <input type="text" id="detail-status" class="form-control" disabled>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="detail-ram" class="form-label">RAM</label>
+                                <input type="text" id="detail-ram" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6">
+                                <label for="detail-rom" class="form-label">ROM</label>
+                                <input type="text" id="detail-rom" class="form-control" disabled>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="detail-warranty" class="form-label">Bảo hành</label>
+                                <input type="text" id="detail-warranty" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detail-description" class="form-label">Mô tả</label>
+                            <textarea id="detail-description" class="form-control" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="editProductBtn" class="btn btn-warning">Sửa</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODEL SUA ANH -->
+<div class="modal fade" id="editImageModal" tabindex="-1" aria-labelledby="editImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="../../backend/routes/api.php?action=editImage" method="POST" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editImageModalLabel">Sửa ảnh sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="image-product-id">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Chọn ảnh mới</label>
+                        <input type="file" name="image" id="image" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Lưu ảnh</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                 </div>
             </form>
