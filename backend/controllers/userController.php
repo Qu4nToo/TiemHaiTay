@@ -5,6 +5,7 @@ function handleRequestUser($action) {
     switch ($action) {
         case 'addUser':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 addUser($_POST);
                 header('Location: ../../frontend/admin/users.php');
             }

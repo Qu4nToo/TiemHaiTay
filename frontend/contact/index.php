@@ -1,5 +1,9 @@
 <?php 
 session_start();
+// Khởi tạo giỏ hàng nếu chưa tồn tại
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
