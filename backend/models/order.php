@@ -14,33 +14,39 @@ function getOrderById($id) {
     $stmt->execute();
     return $stmt->get_result()->fetch_assoc();
 }
-
+function getOrdersByUserId($userId) {
+    $conn = getDatabaseConnection();
+    $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);  // Trả về tất cả các đơn hàng dưới dạng mảng
+}
 function addOrder($data) {
     $conn = getDatabaseConnection();
     $randomId = substr(uniqid('order_', true), 0, 32);
-
-    // Kiểm tra và chuẩn hóa order_date
     if (isset($data['order_date'])) {
-        // Kiểm tra xem nếu order_date không có giờ, thêm giờ mặc định
-        if (strlen($data['order_date']) == 10) {  // Định dạng YYYY-MM-DD có độ dài 10 ký tự
-            $orderDate = $data['order_date'] . ' 00:00:00';  // Thêm giờ mặc định
+        if (strlen($data['order_date']) == 10) {
+            $orderDate = $data['order_date'] . ' 00:00:00';
         } else {
-            $orderDate = $data['order_date'];  // Nếu có đầy đủ giờ
+            $orderDate = $data['order_date'];
         }
     }
     $status = $data['status'];
-    // print_r($status);
-    // exit;
     $stmt = $conn->prepare("INSERT INTO orders (id, order_date, total_price, status, user_id) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param(
-        "sssss", // Các kiểu dữ liệu: 's' cho string, 'i' cho integer
+        "sssss",
         $randomId,
         $orderDate,
         $data['total_price'],
-        $status,  // Sử dụng status dưới dạng string
+        $status,
         $data['user_id']
     );
-    return $stmt->execute();
+
+    if ($stmt->execute()) {
+        return $randomId; // Trả về ID đơn hàng
+    }
+    return false; // Nếu có lỗi
 }
 
 function updateOrder($id, $data) {

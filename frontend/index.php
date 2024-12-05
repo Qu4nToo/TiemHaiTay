@@ -2,6 +2,37 @@
 require_once '../backend/models/product.php';
 $products = getAllProducts();
 session_start();
+// // Khởi tạo giỏ hàng nếu chưa tồn tại
+// if (!isset($_SESSION['cart'])) {
+//     $_SESSION['cart'] = [];
+// }
+
+// // Hàm thêm sản phẩm vào giỏ hàng
+// if (isset($_POST['add_to_cart'])) {
+//     $product_id = $_POST['product_id'];
+//     $product_name = $_POST['product_name'];
+//     $product_price = $_POST['product_price'];
+
+//     $selectedProduct = [
+//         'id' => $product_id,
+//         'name' => $product_name,
+//         'price' => $product_price,
+//         'quantity' => 1, // Mặc định là 1
+//     ];
+//     $found = false;
+//     foreach ($_SESSION['cart'] as &$item) {
+//         if ($item['id'] == $product_id) {
+//             $item['quantity'] += 1; // Tăng số lượng thêm 1 nếu đã tồn tại
+//             $found = true;
+//             break;
+//         }
+//     }
+//     if (!$found) {
+//         $_SESSION['cart'][] = $selectedProduct; // Thêm sản phẩm mới vào giỏ hàng
+//         print_r($_SESSION['cart']);
+//         exit;
+//     }
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +86,184 @@ session_start();
 
     #products-list {
         display: none;
+    }
+
+    //modal gio hàng css
+    .modal {
+        display: none;
+        /* Ẩn modal khi không mở */
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Nền mờ */
+        padding-top: 50px;
+        /* Khoảng cách từ trên */
+    }
+
+    /* Nội dung modal */
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        /* Chiếm 80% chiều rộng màn hình */
+        max-width: 600px;
+        /* Giới hạn chiều rộng tối đa */
+        overflow-y: auto;
+        /* Nếu quá dài, cuộn dọc */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng nhẹ */
+    }
+
+    /* Đóng modal */
+    .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Tiêu đề modal */
+    .modal-header {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Danh sách sản phẩm trong giỏ */
+    /* Cấu trúc modal */
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        overflow-y: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Các phần tiêu đề */
+    .cart-items-list.header {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        /* Tạo 4 cột */
+        margin-bottom: 15px;
+        padding: 0;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .header-item {
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+    }
+
+    /* Các phần tử trong giỏ hàng */
+    .cart-items-list {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        /* Tạo 4 cột cho từng sản phẩm */
+        margin-bottom: 10px;
+        padding: 0;
+        list-style: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .item-name {
+        font-weight: 600;
+        color: #333;
+        text-align: left;
+    }
+
+    .quantity-input {
+        width: 50px;
+    }
+
+    .update-cart-btn {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .empty-cart-text {
+        font-size: 18px;
+        text-align: center;
+        color: #888;
+    }
+
+    .cart-item button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .cart-item button:hover {
+        background-color: #d32f2f;
+    }
+
+    .hover-text-white:hover {
+        color: white !important;
+        /* Đổi màu chữ thành trắng khi hover */
+    }
+
+    #cart-modal .modal-dialog {
+        max-width: 80%;
+        /* Hoặc giá trị khác tùy ý */
+    }
+
+    /* Responsive cho màn hình nhỏ */
+    @media screen and (max-width: 600px) {
+        .modal-content {
+            width: 90%;
+        }
+
+        .cart-items-list.header {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .cart-items-list {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .cart-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cart-item input {
+            margin-bottom: 10px;
+        }
+
+        .cart-item button {
+            width: 100%;
+        }
     }
 </style>
 
@@ -146,7 +355,8 @@ session_start();
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <div class="nav-item fs-4 rounded-2 px-2">
-                    <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <button class="nav-link text-dark " id="card-btn" onclick="openCart()"><i
+                            class="fa-solid fa-cart-shopping"></i></button>
                 </div>
                 <div class="dropdown nav-item rounded-2">
                     <?php
@@ -271,8 +481,8 @@ session_start();
     <div id="carouselExampleDark2" class="carousel carousel-dark slide p-4 border-bottom border-dark"
         data-bs-ride="carousel" style="background-color: #EDEDED;">
         <div class="carousel-inner">
-            <?php foreach ($products as $index => $product): 
-                $img='./assets/img/'.$product['image'];
+            <?php foreach ($products as $index => $product):
+                $img = './assets/img/' . $product['image'];
                 ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>" data-bs-interval="10000">
                     <div class="container">
@@ -282,8 +492,7 @@ session_start();
                                     class="text-decoration-none p-2" id="<?= htmlspecialchars($product['id']) ?>">
                                     <div class="col product-card">
                                         <div class="card">
-                                            <img src="<?= htmlspecialchars($img) ?>"
-                                                class="card-img-top p-3 pb-0"
+                                            <img src="<?= htmlspecialchars($img) ?>" class="card-img-top p-3 pb-0"
                                                 alt="<?= htmlspecialchars($product['product_name']) ?>">
                                             <div class="px-5 pb-5">
                                                 <h4 class="card-title allproduct-card-title fs-5">
@@ -301,7 +510,8 @@ session_start();
                                                     <?= number_format($product['price'], 0, ",", ".") ?> VND
                                                 </p>
                                                 <p class="card-text ms-1">Bảo hành:
-                                                    <?= htmlspecialchars($product['warranty']) ?> tháng</p>
+                                                    <?= htmlspecialchars($product['warranty']) ?> tháng
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -487,9 +697,79 @@ session_start();
                 </div>
             </footer>
         </div>
-
     </footer>
+    <!-- <div id="cart-modal" class="modal">
+        <div class="modal-content modal-lg">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2 class="modal-header">Giỏ Hàng</h2>
+            <div id="cart-items">
+                <?php if (!empty($_SESSION['cart'])): ?>
+                    <form method="POST" action="update_cart.php">
+                        <!-- Tiêu đề của các cột -->
+                        <div class="row mb-3">
+                            <div class="col-4"><strong class="header-item">Tên Sản Phẩm</strong></div>
+                            <div class="col-2"><strong class="header-item">Giá Gốc</strong></div>
+                            <div class="col-2"><strong class="header-item">Số Lượng</strong></div>
+                            <div class="col-2"><strong class="header-item">Tổng Tiền</strong></div>
+                            <div class="col-2"><strong class="header-item"></strong></div>
+                        </div>
 
+                        <!-- Danh sách các sản phẩm trong giỏ hàng -->
+                        <?php foreach ($_SESSION['cart'] as $index => $item): ?>
+                            <div class="row mb-3 align-items-center">
+                                <div class="col-4">
+                                    <span class="item-name"
+                                        style="font-size: 14px;"><?= htmlspecialchars($item['name']); ?></span>
+                                </div>
+                                <div class="col-2">
+                                    <span class="item-name"
+                                        style="font-size: 14px;"><?= number_format($item['price'], 0) . 'đ'; ?></span>
+                                </div>
+                                <div class="col-2">
+                                    <input class="form-control quantity-input" type="number" name="quantities[<?= $index; ?>]"
+                                        value="<?= $item['quantity']; ?>" min="1" style="width: 80px;">
+                                </div>
+                                <div class="col-2">
+                                    <span class="item-name text-dark"
+                                        style="font-size: 14px;"><?= number_format($item['quantity'] * $item['price'], 0) . 'đ'; ?>
+                                    </span>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" name="remove" value="<?= $index; ?>"
+                                        class="btn btn-danger btn-sm w-70 text-dark">Xóa</button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="update-cart-btn d-flex flex-row-reverse gap-3">
+                            <a href="checkout.php"
+                                class="btn btn-success text-dark hover-text-white text-decoration-none">Thanh
+                                toán</a>
+                            <button type="submit" name="update_cart" class="btn btn-primary text-dark hover-text-white">Cập
+                                nhật giỏ hàng</button>
+                        </div>
+                    </form>
+                <?php else: ?>
+                    <p class="empty-cart-text">Giỏ hàng rỗng!</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div> -->
 </body>
 
 </html>
+<script>
+    // function openCart() {
+    //     document.getElementById("cart-modal").style.display = "block";
+    // }
+    // function closeCart() {
+    //     document.getElementById("cart-modal").style.display = "none";
+    // }
+
+    // // Đóng modal khi nhấp bên ngoài
+    // window.onclick = function (event) {
+    //     const modal = document.getElementById("cart-modal");
+    //     if (event.target === modal) {
+    //         modal.style.display = "none";
+    //     }
+    // };
+</script>

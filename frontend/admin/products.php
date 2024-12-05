@@ -10,8 +10,7 @@ $products = getAllProducts();
     <div class="row mt-4">
         <div class="col-md-12">
             <h2 class="text-center">Quản lý Sản phẩm</h2>
-            <form action="../../backend/routes/api.php?action=add" method="POST" class="mb-4"
-                enctype="multipart/form-data">
+            <form action="../../backend/routes/api.php?action=add" method="POST" class="mb-4" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-12 col-md-2 mb-3">
                         <input type="text" name="product_type" class="form-control" placeholder="Hãng"
@@ -52,7 +51,7 @@ $products = getAllProducts();
                     </div>
                     <div class="col-12 mb-3">
                         <label for="image" class="form-label">Ảnh sản phẩm</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <input type="file" name="image" class="form-control"  accept="image/*">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Thêm sản phẩm</button>
