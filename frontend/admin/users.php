@@ -86,6 +86,9 @@ $users = getAllUsers();
                         <label for="edit-phone" class="form-label">Số điện thoại</label>
                         <input type="text" name="phone" id="edit-phone" class="form-control" required>
                     </div>
+                    
+                        <input type="hidden" name="password" id="edit-password" >
+                    
                     <div class="mb-3">
                         <label for="edit-email" class="form-label">Email</label>
                         <input type="email" name="email" id="edit-email" class="form-control" required>
@@ -114,6 +117,7 @@ $users = getAllUsers();
             //console.log(this.dataset);
             document.getElementById('edit-id').value = this.dataset.id;
             document.getElementById('edit-name').value = this.dataset.name;
+            document.getElementById('edit-password').value = this.dataset.password;
             document.getElementById('edit-phone').value = this.dataset.phone;
             document.getElementById('edit-email').value = this.dataset.email;
             document.getElementById('edit-address').value = this.dataset.address;
