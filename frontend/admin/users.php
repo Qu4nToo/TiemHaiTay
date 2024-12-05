@@ -2,6 +2,7 @@
 include './components/header.php';
 require_once '../../backend/models/user.php';
 $users = getAllUsers();
+print_r($_POST);
 ?>
 <div class="container-fluid">
     <?php include './components/navbar.php'; ?>

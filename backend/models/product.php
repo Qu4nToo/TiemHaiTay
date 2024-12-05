@@ -35,7 +35,7 @@ function addProduct($data)
         $data['card'],
         $data['status'],
         $data['description'],
-        $data['image'],
+        $data['image']
     );
     return $stmt->execute();
 }
