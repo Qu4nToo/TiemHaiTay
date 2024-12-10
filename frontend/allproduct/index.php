@@ -40,6 +40,7 @@ if (isset($_POST['add_to_cart'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,380 +53,13 @@ if (isset($_POST['add_to_cart'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../js/app.js">
     <link rel="stylesheet" href="../css/app.css">
     <title>Trang chủ</title>
-    <!-- <script>
-        $(document).ready(function () {
-            $("#myInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#myTable .col ").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-        const cards = document.querySelectorAll('.card');
-
-        cards.forEach(card => {
-            card.addEventListener('mouseover', () => {
-                card.classList.add('hover');
-            });
-
-            card.addEventListener('mouseout', () => {
-                card.classList.remove('hover');
-            });
-        });
-    </script> -->
 </head>
-<style>
-    .alert {
-        position: fixed;
-        right: 20px;
-        bottom: 200px;
-        padding: 15px;
-        background-color: #28a745;
-        /* Màu xanh cho thông báo thành công */
-        color: white;
-        border-radius: 5px;
-        font-size: 16px;
-        z-index: 9999;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: auto;
-        max-width: 300px;
-        opacity: 1;
-        /* Đảm bảo thông báo bắt đầu với độ mờ 100% */
-        transition: opacity 1s ease-out;
-        /* Thêm hiệu ứng mờ dần khi ẩn */
-    }
 
-    .alert-success {
-        background-color: #28a745;
-    }
-
-    .ft-icon a:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
-
-    .ft-item p {
-        color: #CFCFCF;
-    }
-
-    .ft-item li a {
-        text-decoration: none;
-        color: #CFCFCF;
-    }
-
-    .ft-item li a:hover {
-        text-decoration: underline;
-    }
-
-    .btn {
-        background-color: #EDEDED;
-    }
-
-    .nav-item:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
-
-    .product-btn:hover {
-        background: rgba(178, 192, 201, 0.758);
-
-    }
-
-    .breadcrumb {
-        padding-left: 100px;
-    }
-
-    .breadcrumb-item a {
-        color: rgba(0, 0, 0, 0.558);
-        text-decoration: none;
-    }
-
-    .accordion-button:not(.collapsed) {
-        background-color: transparent !important;
-        color: inherit;
-    }
-
-    button.accordion-button:focus {
-        box-shadow: inherit;
-
-    }
-
-    .card {
-        background-color: rgb(247, 247, 247);
-        border: none;
-    }
-
-    .accordion-body ul li a {
-        color: black;
-        text-decoration: none;
-    }
-
-    .name {
-        text-decoration: none;
-        color: black;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: rgba(65, 64, 64, 0.253) !important;
-    }
-
-    #products-list {
-        display: none;
-    }
-
-    .product-card:hover {
-        box-shadow: black;
-        transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        border-radius: 25px;
-    }
-
-    .product-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    //modal gio hàng css
-    /* Tổng thể modal */
-    #cart-modal {
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-    }
-
-    /* Nội dung modal */
-    .modal-content {
-        background: #fff;
-        margin: 5% auto;
-        padding: 20px;
-        border-radius: 10px;
-        width: 50%;
-        height: 50%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        animation: slide-down 0.3s ease-in-out;
-
-        overflow: auto;
-    }
-
-    /* Hiệu ứng mở modal */
-    @keyframes slide-down {
-        from {
-            transform: translateY(-50px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    /* Header modal */
-    .modal-header {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-    }
-
-    /* Nút đóng modal */
-    .close {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        font-size: 24px;
-        font-weight: bold;
-        color: #aaa;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-
-    .close:hover {
-        color: #333;
-    }
-
-    /* Danh sách sản phẩm */
-    .row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    .row:last-child {
-        border-bottom: none;
-    }
-
-    /* Các cột trong giỏ hàng */
-    .col-4,
-    .col-2 {
-        text-align: left;
-    }
-
-    .header-item {
-        color: #555;
-        font-size: 14px;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    /* Sản phẩm */
-    .item-name {
-        color: #333;
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .item-price,
-    .item-total {
-        color: #555;
-        font-size: 14px;
-    }
-
-    /* Input số lượng */
-    .quantity-input {
-        flex: 1;
-        max-width: 80px;
-        padding: 5px;
-        font-size: 14px;
-        text-align: center;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    form.d-flex {
-        display: flex;
-        align-items: center;
-    }
-
-    form .btn {
-        flex: 1;
-        /* Đảm bảo nút co giãn cùng kích thước */
-        max-width: 100px;
-        padding: 6px 12px;
-        font-size: 14px;
-        border-radius: 5px;
-    }
-
-    form .btn-primary {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    form .btn-primary:hover {
-        background-color: #0056b3;
-        transform: scale(1.05);
-    }
-
-    form .btn-danger {
-        background-color: #dc3545;
-        color: #fff;
-        border: none;
-    }
-
-    form .btn-danger:hover {
-        background-color: #a71d2a;
-    }
-
-    /* Các nút */
-    button,
-    .btn {
-        padding: 8px 16px;
-        font-size: 14px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-        color: #fff;
-        border: none;
-    }
-
-    .btn-danger:hover {
-        background-color: #a71d2a;
-    }
-
-    .btn-success {
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-    }
-
-    .btn-success:hover {
-        background-color: #1e7e34;
-    }
-
-    /* Nút thanh toán */
-    .btn-lg {
-        font-size: 16px;
-        padding: 12px 24px;
-    }
-
-    /* Giỏ hàng trống */
-    .empty-cart-text {
-        text-align: center;
-        font-size: 16px;
-        color: #888;
-        margin-top: 20px;
-    }
-    #cart-message {
-        display: flex;
-        position: fixed;
-        bottom: 50px;
-        right: 20px;
-        z-index: 9999;
-        width: 300px;
-        height: 50px;
-        animation: fadeIn 0.5s ease, fadeOut 0.5s ease 3s;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }
-</style>
-
-<body onload="renderProduct()">
+<body>
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
@@ -448,49 +82,41 @@ if (isset($_POST['add_to_cart'])) {
                     </style>
                     <input type="search" placeholder="Tìm kiếm gì đó ở đây"
                         class="dropdown-toggle search-nav w-75 rounded p-1" data-bs-toggle="dropdown" id="search">
-                    </input>
                     <ul class="dropdown-menu w-100" id="products-list">
+                        <?php foreach ($products as $product): ?>
+                            <li id="products">
+                                <a class="dropdown-item border-bottom" href="../productdetail?id=<?= $product['id'] ?>">
+                                    <div class="mt-2 mb-2" style="width: auto;">
+                                        <div class="row g-0">
+                                            <div class="col-2">
+                                                <img src="<?= '../assets/img/' . $product['image'] ?>"
+                                                    class="img-fluid rounded-star img-search me-2" alt="...">
+                                            </div>
+                                            <div class="col-10 ps-3">
+                                                <p class="card-title" id="product_name"></p><?= $product['product_name'] ?>
+                                                </p>
+                                                <p class="card-text" style="color: red;">
+                                                    <?= number_format($product['price'], 0, ",", "."); ?> VND
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
                 <script>
-                    function renderProduct() {
-                        fetch('https://665892f55c36170526490b38.mockapi.io/TiemHaiTay', {
-                            method: 'GET',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                let product = '';
-                                data.map(value => product += `
-    <li id="products"><a class="dropdown-item border-0" href="${value.url}" >
-        <div class="mt-2 mb-2" style="width: auto;">
-            <div class="row g-0">
-              <div class="col-2">
-                <img src="${value.img}" class="img-fluid rounded-star img-search me-2" alt="...">
-              </div>
-              <div class="col-10 ps-3">
-                  <p class="card-title">${value.name}</p>
-                  <p class="card-text" style="color: red;">${value.price}</p>
-              </div>
-            </div>
-          </div>
-    </a></li>`);
-                                document.getElementById('products-list').innerHTML = product;
-                            })
-                            .catch(error => console.log(error));
-                    }
                     $(document).ready(function () {
                         $("#search").on("keyup", function () {
                             var value = $(this).val().toLowerCase();
                             $("#products-list li").filter(function () {
                                 var x = document.getElementById('products-list');
-                                x.style.display = 'block'
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                x.style.display = 'block';
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                                 var y = document.getElementById('search').value;
                                 if (y == '') {
-                                    document.getElementById('products-list').style.display = 'none'
+                                    document.getElementById('products-list').style.display = 'none';
                                 }
                             });
                         });
@@ -549,17 +175,13 @@ if (isset($_POST['add_to_cart'])) {
         </div>
     </nav>
     <div class="container mb-5">
-        <div class="row">
+        <div class="row align-items-start">
             <!-- trái -->
             <div class="col-md-3 border-end">
                 <strong style="margin-left: 30px;">Danh mục sản phẩm</strong>
                 <div>
                     <hr>
                 </div>
-                <form class="d-flex" style="margin-bottom: 30px;">
-                    <input class="form-control me-2" id="myInput" type="search" placeholder="Tìm danh mục sản phẩm"
-                        aria-label="Search">
-                </form>
                 <div class="border-bottom pb-4 mb-4" style="margin-left: 30px;">
                     <h2>
                         Laptop
@@ -652,7 +274,8 @@ if (isset($_POST['add_to_cart'])) {
                                         <input type="hidden" name="product_name"
                                             value="<?= htmlspecialchars($product['product_name']); ?>">
                                         <input type="hidden" name="product_price" value="<?= $product['price']; ?>">
-                                        <button type="submit" name="add_to_cart" class="btn btn-primary w-100 text-white">Add
+                                        <button type="submit" name="add_to_cart"
+                                            class="btn btn-primary w-100 text-white">Add
                                             to cart</button>
                                     </form>
                                 </div>

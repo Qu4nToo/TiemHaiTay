@@ -1,5 +1,6 @@
 <?php
 require_once '../../backend/models/product.php';
+$allProduct= getAllProducts();
 $id = $_GET['id'];
 $products = getProductById($id);
 $img = '../assets/img/'.$products['image'];
@@ -24,6 +25,7 @@ session_start();
     <!-- KOHO -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
@@ -98,49 +100,40 @@ session_start();
                     </style>
                     <input type="search" placeholder="Tìm kiếm gì đó ở đây"
                         class="dropdown-toggle search-nav w-75 rounded p-1" data-bs-toggle="dropdown" id="search">
-                    </input>
                     <ul class="dropdown-menu w-100" id="products-list">
+                        <?php foreach ($allProduct as $allProduct): ?>
+                            <li id="Products">
+                                <a class="dropdown-item border-bottom" href="?id=<?= $allProduct['id'] ?>">
+                                    <div class="mt-2 mb-2" style="width: auto;">
+                                        <div class="row g-0">
+                                            <div class="col-2">
+                                                <img src="<?= '../assets/img/' . $allProduct['image'] ?>"
+                                                    class="img-fluid rounded-star img-search me-2" alt="...">
+                                            </div>
+                                            <div class="col-10 ps-3">
+                                                <p class="card-title" id="Product_name"></p><?= $allProduct['product_name'] ?>
+                                                </p>
+                                                <p class="card-text" style="color: red;">
+                                                    <?= number_format($allProduct['price'], 0, ",", "."); ?> VND</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
                 <script>
-                    function renderProduct() {
-                        fetch('https://665892f55c36170526490b38.mockapi.io/TiemHaiTay', {
-                            method: 'GET',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                let product = '';
-                                data.map(value => product += `
-    <li id="products"><a class="dropdown-item border-0" href="${value.url}" >
-        <div class="mt-2 mb-2" style="width: auto;">
-            <div class="row g-0">
-              <div class="col-2">
-                <img src="${value.img}" class="img-fluid rounded-star img-search me-2" alt="...">
-              </div>
-              <div class="col-10 ps-3">
-                  <p class="card-title">${value.name}</p>
-                  <p class="card-text" style="color: red;">${value.price}</p>
-              </div>
-            </div>
-          </div>
-    </a></li>`);
-                                document.getElementById('products-list').innerHTML = product;
-                            })
-                            .catch(error => console.log(error));
-                    }
                     $(document).ready(function () {
                         $("#search").on("keyup", function () {
                             var value = $(this).val().toLowerCase();
                             $("#products-list li").filter(function () {
                                 var x = document.getElementById('products-list');
-                                x.style.display = 'block'
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                x.style.display = 'block';
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                                 var y = document.getElementById('search').value;
                                 if (y == '') {
-                                    document.getElementById('products-list').style.display = 'none'
+                                    document.getElementById('products-list').style.display = 'none';
                                 }
                             });
                         });

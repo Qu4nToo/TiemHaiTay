@@ -17,7 +17,7 @@
     font-weight: bold;
 }
 
-//admin - order - nut chon nguoi dung
+
 .select2-container {
     width: 100% !important;
 }
@@ -49,5 +49,255 @@
 }
 
 
-//navbar
 
+.ft-icon a:hover {
+    background: rgba(178, 192, 201, 0.758);
+}
+
+.ft-item p {
+    color: #CFCFCF;
+}
+
+.ft-item li a {
+    text-decoration: none;
+    color: #CFCFCF;
+}
+
+.ft-item li a:hover {
+    text-decoration: underline;
+}
+
+.nav-item:hover {
+    background: rgba(178, 192, 201, 0.758);
+}
+
+.product-btn:hover {
+    background: rgba(178, 192, 201, 0.758);
+}
+
+.name {
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(65, 64, 64, 0.253) !important;
+}
+
+#products-list {
+    display: none;
+}
+
+.modal {
+    display: none;
+    /* Ẩn modal khi không mở */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Nền mờ */
+    padding-top: 50px;
+    /* Khoảng cách từ trên */
+}
+
+/* Nội dung modal */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    /* Chiếm 80% chiều rộng màn hình */
+    max-width: 600px;
+    /* Giới hạn chiều rộng tối đa */
+    overflow-y: auto;
+    /* Nếu quá dài, cuộn dọc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ */
+}
+
+/* Đóng modal */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Tiêu đề modal */
+.modal-header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Danh sách sản phẩm trong giỏ */
+/* Cấu trúc modal */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Các phần tiêu đề */
+.cart-items-list.header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    /* Tạo 4 cột */
+    margin-bottom: 15px;
+    padding: 0;
+    border-bottom: 2px solid #ddd;
+}
+
+.header-item {
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* Các phần tử trong giỏ hàng */
+.cart-items-list {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    /* Tạo 4 cột cho từng sản phẩm */
+    margin-bottom: 10px;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+}
+
+.quantity-input {
+    width: 50px;
+}
+
+.update-cart-btn {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.empty-cart-text {
+    font-size: 18px;
+    text-align: center;
+    color: #888;
+}
+
+.cart-item button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.cart-item button:hover {
+    background-color: #d32f2f;
+}
+
+.hover-text-white:hover {
+    color: white !important;
+    /* Đổi màu chữ thành trắng khi hover */
+}
+
+#cart-modal .modal-dialog {
+    max-width: 80%;
+    /* Hoặc giá trị khác tùy ý */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .cart-items-list.header {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .cart-items-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item input {
+        margin-bottom: 10px;
+    }
+
+    .cart-item button {
+        width: 100%;
+    }
+}
+#product-list {
+    display: none;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.ft-icon a:hover {
+    background: rgba(178, 192, 201, 0.758);
+}
+
+.ft-item p {
+    color: #CFCFCF;
+}
+
+.ft-item li a {
+    text-decoration: none;
+    color: #CFCFCF;
+}
+
+.ft-item li a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    background-color: #EDEDED;
+}
+
+.nav-item:hover {
+    background: rgba(178, 192, 201, 0.758);
+}
+
+.product-btn:hover {
+    background: rgba(178, 192, 201, 0.758);
+}

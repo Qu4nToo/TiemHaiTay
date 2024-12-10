@@ -42,224 +42,11 @@ if (isset($_POST['add_to_cart'])) {
         </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/99c03377a9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Trang chủ</title>
 </head>
 <style>
-    .ft-icon a:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
 
-    .ft-item p {
-        color: #CFCFCF;
-    }
-
-    .ft-item li a {
-        text-decoration: none;
-        color: #CFCFCF;
-    }
-
-    .ft-item li a:hover {
-        text-decoration: underline;
-    }
-
-    .nav-item:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
-
-    .product-btn:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
-
-    .name {
-        text-decoration: none;
-        color: black;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: rgba(65, 64, 64, 0.253) !important;
-    }
-
-    #products-list {
-        display: none;
-    }
-
-    //modal gio hàng css
-    .modal {
-        display: none;
-        /* Ẩn modal khi không mở */
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Nền mờ */
-        padding-top: 50px;
-        /* Khoảng cách từ trên */
-    }
-
-    /* Nội dung modal */
-    .modal-content {
-        background-color: #fff;
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 8px;
-        width: 80%;
-        /* Chiếm 80% chiều rộng màn hình */
-        max-width: 600px;
-        /* Giới hạn chiều rộng tối đa */
-        overflow-y: auto;
-        /* Nếu quá dài, cuộn dọc */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* Đổ bóng nhẹ */
-    }
-
-    /* Đóng modal */
-    .close {
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* Tiêu đề modal */
-    .modal-header {
-        font-size: 24px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    /* Danh sách sản phẩm trong giỏ */
-    /* Cấu trúc modal */
-    .modal-content {
-        background-color: #fff;
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 8px;
-        width: 80%;
-        max-width: 600px;
-        overflow-y: auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Các phần tiêu đề */
-    .cart-items-list.header {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        /* Tạo 4 cột */
-        margin-bottom: 15px;
-        padding: 0;
-        border-bottom: 2px solid #ddd;
-    }
-
-    .header-item {
-        font-weight: 600;
-        color: #333;
-        text-align: center;
-    }
-
-    /* Các phần tử trong giỏ hàng */
-    .cart-items-list {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        /* Tạo 4 cột cho từng sản phẩm */
-        margin-bottom: 10px;
-        padding: 0;
-        list-style: none;
-        border-bottom: 1px solid #eee;
-    }
-
-    .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-    }
-
-    .item-name {
-        font-weight: 600;
-        color: #333;
-        text-align: left;
-    }
-
-    .quantity-input {
-        width: 50px;
-    }
-
-    .update-cart-btn {
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .empty-cart-text {
-        font-size: 18px;
-        text-align: center;
-        color: #888;
-    }
-
-    .cart-item button {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
-    }
-
-    .cart-item button:hover {
-        background-color: #d32f2f;
-    }
-
-    .hover-text-white:hover {
-        color: white !important;
-        /* Đổi màu chữ thành trắng khi hover */
-    }
-
-    #cart-modal .modal-dialog {
-        max-width: 80%;
-        /* Hoặc giá trị khác tùy ý */
-    }
-
-    /* Responsive cho màn hình nhỏ */
-    @media screen and (max-width: 600px) {
-        .modal-content {
-            width: 90%;
-        }
-
-        .cart-items-list.header {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .cart-items-list {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .cart-item {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .cart-item input {
-            margin-bottom: 10px;
-        }
-
-        .cart-item button {
-            width: 100%;
-        }
-    }
 </style>
 
 <body onload="renderProduct()">
@@ -285,49 +72,42 @@ if (isset($_POST['add_to_cart'])) {
                     </style>
                     <input type="search" placeholder="Tìm kiếm gì đó ở đây"
                         class="dropdown-toggle search-nav w-75 rounded p-1" data-bs-toggle="dropdown" id="search">
-                    </input>
                     <ul class="dropdown-menu w-100" id="products-list">
+
+                        <?php foreach ($products as $product): ?>
+                            <li id="products">
+                                <a class="dropdown-item border-bottom" href="./productdetail/?id=<?= $product['id'] ?>">
+                                    <div class="mt-2 mb-2" style="width: auto;">
+                                        <div class="row g-0">
+                                            <div class="col-2">
+                                                <img src="<?= './assets/img/' . $product['image'] ?>"
+                                                    class="img-fluid rounded-star img-search me-2" alt="...">
+                                            </div>
+                                            <div class="col-10 ps-3">
+                                                <p class="card-title" id="product_name"></p><?= $product['product_name'] ?>
+                                                </p>
+                                                <p class="card-text" style="color: red;">
+                                                    <?= number_format($product['price'], 0, ",", "."); ?> VND
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
                 <script>
-                    function renderProduct() {
-                        fetch('https://665892f55c36170526490b38.mockapi.io/TiemHaiTay', {
-                            method: 'GET',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                let product = '';
-                                data.map(value => product += `
-    <li id="products"><a class="dropdown-item border-0" href="${value.url}" >
-        <div class="mt-2 mb-2" style="width: auto;">
-            <div class="row g-0">
-              <div class="col-2">
-                <img src="${value.img}" class="img-fluid rounded-star img-search me-2" alt="...">
-              </div>
-              <div class="col-10 ps-3">
-                  <p class="card-title">${value.name}</p>
-                  <p class="card-text" style="color: red;">${value.price}</p>
-              </div>
-            </div>
-          </div>
-    </a></li>`);
-                                document.getElementById('products-list').innerHTML = product;
-                            })
-                            .catch(error => console.log(error));
-                    }
                     $(document).ready(function () {
                         $("#search").on("keyup", function () {
                             var value = $(this).val().toLowerCase();
                             $("#products-list li").filter(function () {
                                 var x = document.getElementById('products-list');
-                                x.style.display = 'block'
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                x.style.display = 'block';
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                                 var y = document.getElementById('search').value;
                                 if (y == '') {
-                                    document.getElementById('products-list').style.display = 'none'
+                                    document.getElementById('products-list').style.display = 'none';
                                 }
                             });
                         });
@@ -709,8 +489,7 @@ if (isset($_POST['add_to_cart'])) {
                             </div>
                             <? ?>
                             <div class="col-3 d-flex align-items-center gap-2">
-                                <form action="./allproduct/update_cart.php" method="POST"
-                                    class="d-flex w-100">
+                                <form action="./allproduct/update_cart.php" method="POST" class="d-flex w-100">
                                     <input type="hidden" name="id" value="<?= $id; ?>">
                                     <input class="form-control quantity-input me-2" type="number" name="quantity"
                                         value="<?= $item['quantity']; ?>" min="1">
@@ -734,8 +513,7 @@ if (isset($_POST['add_to_cart'])) {
                     <?php endforeach; ?>
                     <div class="row mt-4">
                         <div class="col-12 text-end">
-                            <a href="./allproduct/checkout.php"
-                                class="btn btn-success btn-lg">Thanh toán</a>
+                            <a href="./allproduct/checkout.php" class="btn btn-success btn-lg">Thanh toán</a>
                         </div>
                     </div>
                 <?php else: ?>

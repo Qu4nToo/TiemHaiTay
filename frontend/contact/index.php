@@ -1,6 +1,8 @@
-<?php 
+<?php
 session_start();
 // Khởi tạo giỏ hàng nếu chưa tồn tại
+require_once '../../backend/models/product.php';
+$products = getAllProducts();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -17,6 +19,8 @@ if (!isset($_SESSION['cart'])) {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
     <script src="https://kit.fontawesome.com/99c03377a9.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="styles/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="styles/elegant-icons.css" type="text/css">
@@ -30,6 +34,10 @@ if (!isset($_SESSION['cart'])) {
     <title>Liên Hệ</title>
 </head>
 <style>
+    #product-list {
+        display: none;
+    }
+
     .error-message {
         color: red;
         font-weight: bold;
@@ -66,7 +74,7 @@ if (!isset($_SESSION['cart'])) {
 </style>
 
 <body onload="renderProduct()">
-<nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
+    <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
         <div class="container alight-item-center">
             <a href="../" class=" navbar-brand text-dark rounded-2 d-flex align-items-center flex-grow-0 col-3">
@@ -88,49 +96,41 @@ if (!isset($_SESSION['cart'])) {
                     </style>
                     <input type="search" placeholder="Tìm kiếm gì đó ở đây"
                         class="dropdown-toggle search-nav w-75 rounded p-1" data-bs-toggle="dropdown" id="search">
-                    </input>
                     <ul class="dropdown-menu w-100" id="products-list">
+                        <?php foreach ($products as $product): ?>
+                            <li id="products">
+                                <a class="dropdown-item border-bottom" href="../productdetail?id=<?= $product['id'] ?>">
+                                    <div class="mt-2 mb-2" style="width: auto;">
+                                        <div class="row g-0">
+                                            <div class="col-2">
+                                                <img src="<?= '../assets/img/' . $product['image'] ?>"
+                                                    class="img-fluid rounded-star img-search me-2" alt="...">
+                                            </div>
+                                            <div class="col-10 ps-3">
+                                                <p class="card-title" id="product_name"></p><?= $product['product_name'] ?>
+                                                </p>
+                                                <p class="card-text" style="color: red;">
+                                                    <?= number_format($product['price'], 0, ",", "."); ?> VND
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
                 <script>
-                    function renderProduct() {
-                        fetch('https://665892f55c36170526490b38.mockapi.io/TiemHaiTay', {
-                            method: 'GET',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                let product = '';
-                                data.map(value => product += `
-    <li id="products"><a class="dropdown-item border-0" href="${value.url}" >
-        <div class="mt-2 mb-2" style="width: auto;">
-            <div class="row g-0">
-              <div class="col-2">
-                <img src="${value.img}" class="img-fluid rounded-star img-search me-2" alt="...">
-              </div>
-              <div class="col-10 ps-3">
-                  <p class="card-title">${value.name}</p>
-                  <p class="card-text" style="color: red;">${value.price}</p>
-              </div>
-            </div>
-          </div>
-    </a></li>`);
-                                document.getElementById('products-list').innerHTML = product;
-                            })
-                            .catch(error => console.log(error));
-                    }
                     $(document).ready(function () {
                         $("#search").on("keyup", function () {
                             var value = $(this).val().toLowerCase();
                             $("#products-list li").filter(function () {
                                 var x = document.getElementById('products-list');
-                                x.style.display = 'block'
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                x.style.display = 'block';
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                                 var y = document.getElementById('search').value;
                                 if (y == '') {
-                                    document.getElementById('products-list').style.display = 'none'
+                                    document.getElementById('products-list').style.display = 'none';
                                 }
                             });
                         });
@@ -164,7 +164,8 @@ if (!isset($_SESSION['cart'])) {
                             <?php echo $_SESSION['name']; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="../page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa thông tin</a></li>
+                            <li><a class="dropdown-item" href="../page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa
+                                    thông tin</a></li>
                             <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
                             <li><a class="dropdown-item" href="../page/logout.php">Đăng xuất</a></li>
                         </ul>
