@@ -90,7 +90,7 @@ $users = getAllUsers();
                     <input type="hidden" name="id" id="edit-id">
                     <div class="mb-3">
                         <label for="edit-order_date" class="form-label">Ngày đặt hàng</label>
-                        <input type="date" name="order_date" id="edit-order_date" class="form-control" required>
+                        <input type="date" name="order_date" id="edit-order_date" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="edit-total_price" class="form-label">Tổng giá</label>

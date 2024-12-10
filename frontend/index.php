@@ -2,37 +2,32 @@
 require_once '../backend/models/product.php';
 $products = getAllProducts();
 session_start();
-// // Khởi tạo giỏ hàng nếu chưa tồn tại
-// if (!isset($_SESSION['cart'])) {
-//     $_SESSION['cart'] = [];
-// }
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+if (isset($_POST['add_to_cart'])) {
+    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
 
-// // Hàm thêm sản phẩm vào giỏ hàng
-// if (isset($_POST['add_to_cart'])) {
-//     $product_id = $_POST['product_id'];
-//     $product_name = $_POST['product_name'];
-//     $product_price = $_POST['product_price'];
+    $selectedProduct = [
+        'id' => $product_id,
+        'name' => $product_name,
+        'price' => $product_price,
+        'quantity' => 1, //mac dinh 1
+    ];
 
-//     $selectedProduct = [
-//         'id' => $product_id,
-//         'name' => $product_name,
-//         'price' => $product_price,
-//         'quantity' => 1, // Mặc định là 1
-//     ];
-//     $found = false;
-//     foreach ($_SESSION['cart'] as &$item) {
-//         if ($item['id'] == $product_id) {
-//             $item['quantity'] += 1; // Tăng số lượng thêm 1 nếu đã tồn tại
-//             $found = true;
-//             break;
-//         }
-//     }
-//     if (!$found) {
-//         $_SESSION['cart'][] = $selectedProduct; // Thêm sản phẩm mới vào giỏ hàng
-//         print_r($_SESSION['cart']);
-//         exit;
-//     }
-// }
+    // luu san pham theo id product
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id]['quantity'] += 1;
+        $message = 'Sản phẩm đã tồn tại, số lượng đã được cập nhật.';
+    } else {
+        $_SESSION['cart'][$product_id] = $selectedProduct;
+        $message = 'Sản phẩm đã được thêm vào giỏ hàng.';
+    }
+
+    $_SESSION['message'] = $message;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -546,7 +541,7 @@ session_start();
                     <div class="card mb-3 p-3" style="width: 100%;background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./assets/img/hp-victus-16.png" class="img-fluid rounded-start" alt="...">
+                                <img src="./assets/img/laptop avita.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
@@ -562,7 +557,7 @@ session_start();
                     <div class="card mb-3 p-3" style="width: 100%; background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./assets/img/man-hinh-uu-dai.png" height="140" class="img-fluid rounded-start"
+                                <img src="./assets/img/laptopAsus.png" height="140" class="img-fluid rounded-start"
                                     alt="...">
                             </div>
                             <div class="col-md-6">
@@ -580,7 +575,7 @@ session_start();
                     <div class="card mb-3 p-3" style="width: 100%; background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./assets/img/laptop-uu-dai.png" class="img-fluid rounded-start" alt="...">
+                                <img src="./assets/img/Asustuf.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
@@ -597,7 +592,7 @@ session_start();
                     <div class="card mb-3 p-3" style="width: 100%; background-color: #EDEDED;">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-6">
-                                <img src="./assets/img/voucher_thang_5.png" class="img-fluid rounded-start" alt="...">
+                                <img src="./assets/img/uudai1" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
@@ -698,78 +693,74 @@ session_start();
             </footer>
         </div>
     </footer>
-    <!-- <div id="cart-modal" class="modal">
+    <div id="cart-modal" class="modal">
         <div class="modal-content modal-lg">
             <span class="close" onclick="closeCart()">&times;</span>
             <h2 class="modal-header">Giỏ Hàng</h2>
             <div id="cart-items">
                 <?php if (!empty($_SESSION['cart'])): ?>
-                    <form method="POST" action="update_cart.php">
-                        <!-- Tiêu đề của các cột -->
-                        <div class="row mb-3">
-                            <div class="col-4"><strong class="header-item">Tên Sản Phẩm</strong></div>
-                            <div class="col-2"><strong class="header-item">Giá Gốc</strong></div>
-                            <div class="col-2"><strong class="header-item">Số Lượng</strong></div>
-                            <div class="col-2"><strong class="header-item">Tổng Tiền</strong></div>
-                            <div class="col-2"><strong class="header-item"></strong></div>
-                        </div>
-
-                        <!-- Danh sách các sản phẩm trong giỏ hàng -->
-                        <?php foreach ($_SESSION['cart'] as $index => $item): ?>
-                            <div class="row mb-3 align-items-center">
-                                <div class="col-4">
-                                    <span class="item-name"
-                                        style="font-size: 14px;"><?= htmlspecialchars($item['name']); ?></span>
-                                </div>
-                                <div class="col-2">
-                                    <span class="item-name"
-                                        style="font-size: 14px;"><?= number_format($item['price'], 0) . 'đ'; ?></span>
-                                </div>
-                                <div class="col-2">
-                                    <input class="form-control quantity-input" type="number" name="quantities[<?= $index; ?>]"
-                                        value="<?= $item['quantity']; ?>" min="1" style="width: 80px;">
-                                </div>
-                                <div class="col-2">
-                                    <span class="item-name text-dark"
-                                        style="font-size: 14px;"><?= number_format($item['quantity'] * $item['price'], 0) . 'đ'; ?>
-                                    </span>
-                                </div>
-                                <div class="col-2">
-                                    <button type="submit" name="remove" value="<?= $index; ?>"
-                                        class="btn btn-danger btn-sm w-70 text-dark">Xóa</button>
-                                </div>
+                    <?php foreach ($_SESSION['cart'] as $id => $item): ?>
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-4">
+                                <span class="item-name text-dark"><?= htmlspecialchars($item['name']); ?></span>
                             </div>
-                        <?php endforeach; ?>
-                        <div class="update-cart-btn d-flex flex-row-reverse gap-3">
-                            <a href="checkout.php"
-                                class="btn btn-success text-dark hover-text-white text-decoration-none">Thanh
-                                toán</a>
-                            <button type="submit" name="update_cart" class="btn btn-primary text-dark hover-text-white">Cập
-                                nhật giỏ hàng</button>
+                            <div class="col-2">
+                                <span class="item-price text-dark"><?= number_format($item['price'], 0) . 'đ'; ?></span>
+                            </div>
+                            <? ?>
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <form action="./allproduct/update_cart.php" method="POST"
+                                    class="d-flex w-100">
+                                    <input type="hidden" name="id" value="<?= $id; ?>">
+                                    <input class="form-control quantity-input me-2" type="number" name="quantity"
+                                        value="<?= $item['quantity']; ?>" min="1">
+                                    <button type="submit" name="action" value="update_cart"
+                                        class="btn btn-primary btn-sm text-white w-100">Cập nhật</button>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <span
+                                    class="item-total text-dark"><?= number_format($item['quantity'] * $item['price'], 0) . 'đ'; ?></span>
+                            </div>
+                            <div class="col-1">
+                                <!-- Form xóa sản phẩm -->
+                                <form action="./allproduct/update_cart.php" method="POST">
+                                    <input type="hidden" name="id" value="<?= $id; ?>">
+                                    <button type="submit" name="action" value="remove"
+                                        class="btn btn-danger btn-sm text-white">Xóa</button>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    <?php endforeach; ?>
+                    <div class="row mt-4">
+                        <div class="col-12 text-end">
+                            <a href="./allproduct/checkout.php"
+                                class="btn btn-success btn-lg">Thanh toán</a>
+                        </div>
+                    </div>
                 <?php else: ?>
                     <p class="empty-cart-text">Giỏ hàng rỗng!</p>
                 <?php endif; ?>
             </div>
         </div>
-    </div> -->
+    </div>
+
 </body>
 
 </html>
 <script>
-    // function openCart() {
-    //     document.getElementById("cart-modal").style.display = "block";
-    // }
-    // function closeCart() {
-    //     document.getElementById("cart-modal").style.display = "none";
-    // }
+    function openCart() {
+        document.getElementById("cart-modal").style.display = "block";
+    }
+    function closeCart() {
+        document.getElementById("cart-modal").style.display = "none";
+    }
 
-    // // Đóng modal khi nhấp bên ngoài
-    // window.onclick = function (event) {
-    //     const modal = document.getElementById("cart-modal");
-    //     if (event.target === modal) {
-    //         modal.style.display = "none";
-    //     }
-    // };
+    // Đóng modal khi nhấp bên ngoài
+    window.onclick = function (event) {
+        const modal = document.getElementById("cart-modal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
 </script>

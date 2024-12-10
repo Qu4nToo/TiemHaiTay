@@ -9,10 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: ../login/index.php');
     exit();
 }
-
 $userId = $_SESSION['user_id'];
-
-// Kiểm tra xem đã có order_id trong URL chưa
 if (!isset($_GET['order_id']) || empty($_GET['order_id'])) {
     echo "Không tìm thấy đơn hàng.";
     exit();
@@ -23,8 +20,6 @@ if ($order['user_id'] != $userId) {
     echo "Bạn không có quyền xem đơn hàng này.";
     exit();
 }
-
-// Lấy chi tiết các sản phẩm trong đơn hàng
 $orderDetails = getOrderDetailsByOrderId($orderId);
 
 ?>
@@ -47,8 +42,6 @@ $orderDetails = getOrderDetailsByOrderId($orderId);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             font-family: 'Arial', sans-serif;
         }
-
-        /* Tiêu đề trang */
         h2 {
             text-align: center;
             font-size: 28px;
@@ -62,7 +55,6 @@ $orderDetails = getOrderDetailsByOrderId($orderId);
             margin-bottom: 15px;
         }
 
-        /* Thông tin đơn hàng */
         p {
             font-size: 16px;
             line-height: 1.6;
@@ -74,7 +66,6 @@ $orderDetails = getOrderDetailsByOrderId($orderId);
             color: #007BFF;
         }
 
-        /* CSS cho bảng */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -158,8 +149,6 @@ $orderDetails = getOrderDetailsByOrderId($orderId);
 <body>
     <div class="container">
         <h2>Chi tiết đơn hàng</h2>
-
-        <!-- Thông tin đơn hàng -->
         <p><strong>Mã đơn hàng:</strong> <?= $order['id']; ?></p>
         <p><strong>Ngày đặt:</strong> <?= date('d-m-Y H:i', strtotime($order['order_date'])); ?></p>
         <p><strong>Tổng tiền:</strong> <?= number_format($order['total_price'], 2); ?> đ</p>

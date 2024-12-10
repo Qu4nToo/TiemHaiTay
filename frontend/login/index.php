@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['user_id'] = $user['id'];
                 // Điều hướng đến trang chủ
-                header("Location: ../");
+                header("Location: ../allproduct/index.php");
                 exit();
             } else {
                 $error1 = "Mật khẩu không đúng!";

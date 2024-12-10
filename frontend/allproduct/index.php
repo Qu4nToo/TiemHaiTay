@@ -3,12 +3,9 @@ require_once '../../backend/models/product.php';
 $products = getAllProducts();
 $message = '';
 session_start();
-// Khởi tạo giỏ hàng nếu chưa tồn tại
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
-
-// Hàm thêm sản phẩm vào giỏ hàng
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
@@ -18,25 +15,31 @@ if (isset($_POST['add_to_cart'])) {
         'id' => $product_id,
         'name' => $product_name,
         'price' => $product_price,
-        'quantity' => 1, // Mặc định là 1
+        'quantity' => 1, //mac dinh 1
     ];
-
-    // Sử dụng ID làm khóa để lưu sản phẩm
+    // luu san pham theo id product
     if (isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id]['quantity'] += 1;
-        $message = 'Sản phẩm đã tồn tại, số lượng đã được cập nhật.';
+        $message = 'số lượng đã được cập nhật!';
     } else {
         $_SESSION['cart'][$product_id] = $selectedProduct;
-        $message = 'Sản phẩm đã được thêm vào giỏ hàng.';
+        $message = 'Bỏ giỏ hàng thành công';
     }
-
     $_SESSION['message'] = $message;
 }
 ?>
+<!-- MESSAGE DON DAT HANG THANH CONG -->
+<?php if (isset($_SESSION['message'])): ?>
+    <div id="cart-message" class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= htmlspecialchars($_SESSION['message']); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php unset($_SESSION['message']); ?>
+<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -390,6 +393,36 @@ if (isset($_POST['add_to_cart'])) {
         color: #888;
         margin-top: 20px;
     }
+    #cart-message {
+        display: flex;
+        position: fixed;
+        bottom: 50px;
+        right: 20px;
+        z-index: 9999;
+        width: 300px;
+        height: 50px;
+        animation: fadeIn 0.5s ease, fadeOut 0.5s ease 3s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
 </style>
 
 <body onload="renderProduct()">
@@ -619,9 +652,8 @@ if (isset($_POST['add_to_cart'])) {
                                         <input type="hidden" name="product_name"
                                             value="<?= htmlspecialchars($product['product_name']); ?>">
                                         <input type="hidden" name="product_price" value="<?= $product['price']; ?>">
-                                        <button type="submit" name="add_to_cart" class="btn btn-primary w-100 text-dark">Add
-                                            to
-                                            cart</button>
+                                        <button type="submit" name="add_to_cart" class="btn btn-primary w-100 text-white">Add
+                                            to cart</button>
                                     </form>
                                 </div>
                             </div>
@@ -702,7 +734,6 @@ if (isset($_POST['add_to_cart'])) {
                     <div id="cart-items">
                         <?php if (!empty($_SESSION['cart'])): ?>
                             <form method="POST" action="update_cart.php">
-                                <!-- Tiêu đề của các cột -->
                                 <div class="row mb-3">
                                     <div class="col-4"><strong class="header-item">Tên Sản Phẩm</strong></div>
                                     <div class="col-2"><strong class="header-item">Giá Gốc</strong></div>
@@ -710,8 +741,6 @@ if (isset($_POST['add_to_cart'])) {
                                     <div class="col-2"><strong class="header-item">Tổng Tiền</strong></div>
                                     <div class="col-1"><strong class="header-item"></strong></div>
                                 </div>
-
-                                <!-- Danh sách các sản phẩm trong giỏ hàng -->
                                 <?php foreach ($_SESSION['cart'] as $id => $item): ?>
                                     <div class="row mb-3 align-items-center">
                                         <div class="col-4">
@@ -793,5 +822,10 @@ if (isset($_POST['add_to_cart'])) {
             modal.style.display = "none";
         }
     };
-
+    setTimeout(() => {
+        const cartMessage = document.getElementById('cart-message');
+        if (cartMessage) {
+            cartMessage.style.display = 'none';
+        }
+    }, 3000);
 </script>
