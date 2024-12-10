@@ -2,6 +2,8 @@
 require_once '../../backend/models/product.php';
 $id = $_GET['id'];
 $products = getProductById($id);
+$img = '../assets/img/'.$products['image'];
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -80,6 +82,7 @@ session_start();
                 <img class="img-fluid" src="../assets/img/lopoXoaPhong.png" width="20%" height="20%" alt=""
                     style="margin-right: 10px;">
                 <span class="h5 text-dark slogan">Tiệm hai tay</span>
+
             </a>
             <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -196,14 +199,17 @@ session_start();
     </nav>
     <div class="boxProduct row container mt-5" style="width: 100%; height: fit-content; margin:auto; ">
         <div class="ColProduct col-2 d-flex flex-column gap-3">
-            <a href=""><img src="./img/hp-victus-16.png" alt="" class="img-fluid object-fit-scale border p-2"
-                    style="width: 110px; height: 100x; background-color: #EDEDED; opacity: 100%;"></a>
+                <!-- <a href="">
+                    <img src="#" alt="" class="img-fluid object-fit-scale border p-2"
+                    style="width: 200px; height: 100x; background-color: #EDEDED; opacity: 100%;">
+                </a>  -->
         </div>
+
         <div class="ColProduct col-5 d-flex flex-items-center" style="background-color: EDEDED;">
-            <div class="mainProductImg h-100 p-2">
-                <a href=""> <img src=" ./img/hp-victus-16.png" alt=""
+            <div class="mainProductImg h-100 w-100 p-2">
+                <a href=""> <img src="<?= '../assets/img/' . $products['image']; ?>" alt="" 
                         class=" img-fluid object-fit-cover rounded align-items-center mh-100"
-                        style="background-color: #ffffff;"></a>
+                        style="background-color: #ffffff;"></a> <!-- chạy được -->
             </div>
         </div>
         <div class="ColProduct col-5" style="background-color: rgb(255, 255, 255);">
@@ -295,7 +301,7 @@ session_start();
                         <div class="containerBtn m-auto w:100% d-flex">
                             <h6 class="btnProduct  text-light">Add to cart</h6>
                         </div>
-
+                        
                     </button>
                 </div>
 
