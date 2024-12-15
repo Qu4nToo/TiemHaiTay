@@ -139,6 +139,7 @@ $orders = getOrdersByUserId($userId);
 
 <body>
     <div class="container">
+        <a href="../">về trang chủ</a>
         <h2>Danh sách đơn hàng của bạn</h2>
         <?php if (empty($orders)): ?>
             <p>Bạn chưa có đơn hàng nào.</p>

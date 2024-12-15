@@ -17,7 +17,7 @@ function getOrderById($id) {
 function getOrdersByUserId($userId) {
     $conn = getDatabaseConnection();
     $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ?");
-    $stmt->bind_param("i", $userId);
+    $stmt->bind_param("s", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);  // Trả về tất cả các đơn hàng dưới dạng mảng
