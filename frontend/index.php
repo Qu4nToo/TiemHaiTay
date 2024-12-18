@@ -144,7 +144,7 @@ if (isset($_POST['add_to_cart'])) {
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="./page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa
                                     thông tin</a></li>
-                            <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="./allproduct/viewOrderUser.php">Xem đơn hàng</a></li>
                             <li><a class="dropdown-item" href="./page/logout.php">Đăng xuất</a></li>
                         </ul>
                     <?php } else { ?>
@@ -208,37 +208,37 @@ if (isset($_POST['add_to_cart'])) {
             <div class="carousel-item active" data-bs-interval="10000">
                 <div class="container">
                     <div class="row ">
-                        <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
+                        <a href="./allproduct" class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
                                 <img src="../frontend/assets/img/logo-dell.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">Dell</p>
                             </button>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
+                        </a>
+                        <a href="./allproduct" class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center  w-100 product-btn">
                                 <img src="../frontend/assets/img/logo-hp.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">HP</p>
                             </button>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
+                        </a>
+                        <a href="./allproduct/" class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
                                 <img src="../frontend/assets/img/logo-asus.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">Asus</p>
                             </button>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
+                        </a>
+                        <a href="./allproduct/" class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
                                 <img src="../frontend/assets/img/logo-macbook.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">MacBook</p>
                             </button>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
+                        </a>
+                        <a href="./allproduct" class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
                                 <img src="../frontend/assets/img/logo-lenovo.png" alt="" class="img-fluid w-25 h-25">
                                 <p class="m-0">Lenovo</p>
                             </button>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
+                        </a>
+                        <a href="./allproduct" class="col-xl-2 col-lg-4 col-6 mt-2 mb-2">
                             <button type="button" class="btn text-center w-100 product-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10.5%" height="10.5%" fill="currentColor"
                                     class="bi bi-laptop mb-2" viewBox="0 0 16 16">
@@ -247,7 +247,7 @@ if (isset($_POST['add_to_cart'])) {
                                 </svg>
                                 <p class="m-0">orther</p>
                             </button>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -263,7 +263,7 @@ if (isset($_POST['add_to_cart'])) {
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-md-3 col-10 mt-3">
-                                <a href="../productdetail?id=<?= htmlspecialchars($product['id']) ?>"
+                                <a href="./productdetail?id=<?= htmlspecialchars($product['id']) ?>"
                                     class="text-decoration-none p-2" id="<?= htmlspecialchars($product['id']) ?>">
                                     <div class="col product-card">
                                         <div class="card">
@@ -330,7 +330,7 @@ if (isset($_POST['add_to_cart'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
+                        <a href="./allproduct" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -348,7 +348,7 @@ if (isset($_POST['add_to_cart'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
+                        <a href="./allproduct" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -365,7 +365,7 @@ if (isset($_POST['add_to_cart'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
+                        <a href="./allproduct" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -383,7 +383,7 @@ if (isset($_POST['add_to_cart'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
+                        <a href="./allproduct" class="card-link mt-2 text-center text-dark">Xem tin tức tại đây</a>
                     </div>
                 </div>
             </div>
@@ -403,22 +403,22 @@ if (isset($_POST['add_to_cart'])) {
 
                     <ul class="list-unstyled mb-0 ft-item">
                         <li>
-                            <a href="#!" class="">Dell</a>
+                            <a href="./allproduct" class="">Dell</a>
                         </li>
                         <li>
-                            <a href="#!">HP</a>
+                            <a href="./allproduct">HP</a>
                         </li>
                         <li>
-                            <a href="#!">ASUS</a>
+                            <a href="./allproduct">ASUS</a>
                         </li>
                         <li>
-                            <a href="#!">ACER</a>
+                            <a href="./allproduct">ACER</a>
                         </li>
                         <li>
-                            <a href="#!">LENOVO</a>
+                            <a href="./allproduct">LENOVO</a>
                         </li>
                         <li>
-                            <a href="#!">Các sẩn phẩm khác</a>
+                            <a href="./allproduct">Các sẩn phẩm khác</a>
                         </li>
                     </ul>
                 </div>
@@ -427,22 +427,22 @@ if (isset($_POST['add_to_cart'])) {
 
                     <ul class="list-unstyled mb-0 ft-item">
                         <li>
-                            <a href="#!">Cách đặt hàng?</a>
+                            <a href="./allproduct">Cách đặt hàng?</a>
                         </li>
                         <li>
-                            <a href="#!">Bạn muốn hoàn hàng?</a>
+                            <a href="./allproduct">Bạn muốn hoàn hàng?</a>
                         </li>
                         <li>
-                            <a href="#!">Bạn cần tư vấn?</a>
+                            <a href="./allproduct">Bạn cần tư vấn?</a>
                         </li>
                         <li>
-                            <a href="#!">Tại sao bạn nên chọn chúng tôi?</a>
+                            <a href="./allproduct">Tại sao bạn nên chọn chúng tôi?</a>
                         </li>
                         <li>
-                            <a href="#!">Chính sách bảo hành & đãi ngộ?</a>
+                            <a href="./allproduct">Chính sách bảo hành & đãi ngộ?</a>
                         </li>
                         <li>
-                            <a href="#!">Feedback từ khách hàng đã mua tại cửa hàng.</a>
+                            <a href="./allproduct">Feedback từ khách hàng đã mua tại cửa hàng.</a>
                         </li>
                     </ul>
                 </div>
@@ -453,19 +453,19 @@ if (isset($_POST['add_to_cart'])) {
                     <!-- Section: Social media -->
                     <section class="mb-4 ft-icon">
                         <!-- Facebook -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
                             role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
 
                         <!-- Twitter -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
                             role="button" data-mdb-rippler-color="dark"><i class="fab fa-twitter"></i></a>
 
                         <!-- Google -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
                             role="button" data-mdb-ripple-color="dark"><i class="fab fa-tiktok"></i></a>
 
                         <!-- Instagram -->
-                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
                             role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
 
                     </section>

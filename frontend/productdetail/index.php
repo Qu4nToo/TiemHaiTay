@@ -146,7 +146,7 @@ session_start();
                         <a class="nav-link text-dark" href="../">Home</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
-                        <a class="nav-link text-dark " href="../allproduct">All Product</a>
+                        <a class="nav-link text-dark " href="../allproduct/">All Product</a>
                     </li>
                     <li class="nav-item rounded-2 ps-1">
                         <a class="nav-link text-dark " href="../contact/">Contact</a>
@@ -416,64 +416,137 @@ session_start();
 
 <!-- footer -->
 <footer class="bg-dark text-white text-center text-lg-start">
-    <div class="container p-5">
-        <div class="row">
-            <div class="col-lg-5 col-md-12 mb-4 mb-md-0 ft-item">
-                <h5 class="text-uppercase">Tiệm hai tay</h5>
-                <p>Địa chỉ: 1234 đường Chi Dân, Quận Đống Đa, Hà Nam</p>
-                <p>Hotline:1900 9827</p>
-                <p>Email: tiemhaitay@gmail.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Dịch vụ</h5>
+        <div class="container p-5">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 mb-4 mb-md-0 ft-item">
+                    <h5 class="text-uppercase">Tiệm hai tay</h5>
+                    <p>Địa chỉ: 1234 đường Chi Dân, Quận Đống Đa, Hà Nam</p>
+                    <p>Hotline:1900 9827</p>
+                    <p>Email: tiemhaitay@gmail.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Laptop</h5>
 
-                <ul class="list-unstyled mb-0 ft-item">
-                    <li>
-                        <a href="#!" class="">Điện thoại</a>
-                    </li>
-                    <li>
-                        <a href="#!">Laptop</a>
-                    </li>
-                    <li>
-                        <a href="#!">Loa</a>
-                    </li>
-                    <li>
-                        <a href="#!">Camera</a>
-                    </li>
-                    <li>
-                        <a href="#!">Ipad</a>
-                    </li>
-                    <li>
-                        <a href="#!">Các sản phẩm khác</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Bạn cần hỗ trợ?</h5>
+                    <ul class="list-unstyled mb-0 ft-item">
+                        <li>
+                            <a href="../allproduct/" class="">Dell</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">HP</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">ASUS</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">ACER</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">LENOVO</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">Các sẩn phẩm khác</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Bạn cần hỗ trợ?</h5>
 
-                <ul class="list-unstyled mb-0 ft-item">
-                    <li>
-                        <a href="#!">Cách đặt hàng?</a>
-                    </li>
-                    <li>
-                        <a href="#!">Bạn muốn hoàn hàng?</a>
-                    </li>
-                    <li>
-                        <a href="#!">Bạn cần tư vấn?</a>
-                    </li>
-                    <li>
-                        <a href="#!">Tại sao bạn nên chọn chúng tôi?</a>
-                    </li>
-                    <li>
-                        <a href="#!">Chính sách bảo hành & đãi ngộ?</a>
-                    </li>
-                    <li>
-                        <a href="#!">Feedback từ khách hàng đã mua tại cửa hàng.</a>
-                    </li>
-                </ul>
+                    <ul class="list-unstyled mb-0 ft-item">
+                        <li>
+                            <a href="../allproduct/">Cách đặt hàng?</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">Bạn muốn hoàn hàng?</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">Bạn cần tư vấn?</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">Tại sao bạn nên chọn chúng tôi?</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">Chính sách bảo hành & đãi ngộ?</a>
+                        </li>
+                        <li>
+                            <a href="../allproduct/">Feedback từ khách hàng đã mua tại cửa hàng.</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="text-center">
+                <!-- Grid container -->
+                <div class="container pt-4">
+                    <!-- Section: Social media -->
+                    <section class="mb-4 ft-icon">
+                        <!-- Facebook -->
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
+                            role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+
+                        <!-- Twitter -->
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
+                            role="button" data-mdb-rippler-color="dark"><i class="fab fa-twitter"></i></a>
+
+                        <!-- Google -->
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
+                            role="button" data-mdb-ripple-color="dark"><i class="fab fa-tiktok"></i></a>
+
+                        <!-- Instagram -->
+                        <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="/allproduct"
+                            role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+
+                    </section>
+                </div>
+            </footer>
+        </div>
+    </footer>
+    <div id="cart-modal" class="modal">
+        <div class="modal-content modal-lg">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2 class="modal-header">Giỏ Hàng</h2>
+            <div id="cart-items">
+                <?php if (!empty($_SESSION['cart'])): ?>
+                    <?php foreach ($_SESSION['cart'] as $id => $item): ?>
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-4">
+                                <span class="item-name text-dark"><?= htmlspecialchars($item['name']); ?></span>
+                            </div>
+                            <div class="col-2">
+                                <span class="item-price text-dark"><?= number_format($item['price'], 0) . 'đ'; ?></span>
+                            </div>
+                            <? ?>
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <form action="../allproduct//update_cart.php" method="POST" class="d-flex w-100">
+                                    <input type="hidden" name="id" value="<?= $id; ?>">
+                                    <input class="form-control quantity-input me-2" type="number" name="quantity"
+                                        value="<?= $item['quantity']; ?>" min="1">
+                                    <button type="submit" name="action" value="update_cart"
+                                        class="btn btn-primary btn-sm text-white w-100">Cập nhật</button>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <span
+                                    class="item-total text-dark"><?= number_format($item['quantity'] * $item['price'], 0) . 'đ'; ?></span>
+                            </div>
+                            <div class="col-1">
+                                <!-- Form xóa sản phẩm -->
+                                <form action="../allproduct//update_cart.php" method="POST">
+                                    <input type="hidden" name="id" value="<?= $id; ?>">
+                                    <button type="submit" name="action" value="remove"
+                                        class="btn btn-danger btn-sm text-white">Xóa</button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    <div class="row mt-4">
+                        <div class="col-12 text-end">
+                            <a href="../allproduct//checkout.php" class="btn btn-success btn-lg">Thanh toán</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <p class="empty-cart-text">Giỏ hàng rỗng!</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-</footer>
 
 </html>

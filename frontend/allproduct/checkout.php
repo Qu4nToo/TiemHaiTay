@@ -38,14 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'quantity' => $item['quantity'],
                 'price' => $item['price']
             ];
-            //print_r($orderDetailData);
+            print_r($orderDetailData);
             //exit;
             addOrderDetail($orderDetailData);
         }
         
         unset($_SESSION['cart']);
-        echo 'Đơn hàng đã được tạo thành công!<br>';
-        echo '<a href="order_success.php">Xem đơn hàng</a>';
+        header("Location: status.php?id=$orderId");
         exit();
     }
 }

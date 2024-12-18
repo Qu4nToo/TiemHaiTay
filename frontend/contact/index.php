@@ -29,50 +29,16 @@ if (!isset($_SESSION['cart'])) {
     <link rel="stylesheet" href="styles/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="styles/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../allproduct/style.css">
     <!-- End Css Styles -->
 
     <title>Liên Hệ</title>
 </head>
 <style>
-    #product-list {
-        display: none;
-    }
-
-    .error-message {
-        color: red;
-        font-weight: bold;
-    }
-
-    .ft-icon a:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
-
-    .ft-item p {
-        color: #CFCFCF;
-    }
-
-    .ft-item li a {
-        text-decoration: none;
-        color: #CFCFCF;
-    }
-
-    .ft-item li a:hover {
-        text-decoration: underline;
-    }
-
-    .btn {
-        background-color: #EDEDED;
-    }
-
-    .nav-item:hover {
-        background: rgba(178, 192, 201, 0.758);
-    }
-
-    .product-btn:hover {
-        background: rgba(178, 192, 201, 0.758);
+    .cart{
+        align-items: normal;
     }
 </style>
-
 <body onload="renderProduct()">
     <nav class=" navbar navbar-expand-lg sticky-top mb-4 bg-white border-bottom border-dark"
         style="margin-bottom: 10px;">
@@ -153,7 +119,8 @@ if (!isset($_SESSION['cart'])) {
             </div>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <div class="nav-item fs-4 rounded-2 px-2">
-                    <a class="nav-link text-dark " href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <button class="nav-link text-dark " id="card-btn" onclick="openCart()"><i
+                            class="fa-solid fa-cart-shopping"></i></button>
                 </div>
                 <div class="dropdown nav-item rounded-2">
                     <?php
@@ -166,7 +133,7 @@ if (!isset($_SESSION['cart'])) {
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="../page/edit_user.php?id=<?php echo $_SESSION["id"]; ?>">Sửa
                                     thông tin</a></li>
-                            <li><a class="dropdown-item" href="#">Xem đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="../allproduct/viewOrderUser.php">Xem đơn hàng</a></li>
                             <li><a class="dropdown-item" href="../page/logout.php">Đăng xuất</a></li>
                         </ul>
                     <?php } else { ?>
@@ -191,7 +158,7 @@ if (!isset($_SESSION['cart'])) {
     <div class="container">
 
         <div class="container p-5">
-            <div class="row">
+            <div class="row cart" >
                 <!-- Contact Information -->
                 <div class="col-md-6 bg-primary text-white p-5">
                     <h2>Contact Information</h2>
@@ -241,26 +208,26 @@ if (!isset($_SESSION['cart'])) {
                         <p>Email: tiemhaitay@gmail.com</p>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Dịch vụ</h5>
+                        <h5 class="text-uppercase">Laptop</h5>
 
                         <ul class="list-unstyled mb-0 ft-item">
                             <li>
-                                <a href="#!" class="">Điện thoại</a>
+                                <a href="../allproduct/" class="">Dell</a>
                             </li>
                             <li>
-                                <a href="#!">Laptop</a>
+                                <a href="../allproduct/">HP</a>
                             </li>
                             <li>
-                                <a href="#!">Loa</a>
+                                <a href="../allproduct/">ASUS</a>
                             </li>
                             <li>
-                                <a href="#!">Camera</a>
+                                <a href="../allproduct/">ACER</a>
                             </li>
                             <li>
-                                <a href="#!">Ipad</a>
+                                <a href="../allproduct/">LENOVO</a>
                             </li>
                             <li>
-                                <a href="#!">Các sẩn phẩm khác</a>
+                                <a href="../allproduct/">Các sẩn phẩm khác</a>
                             </li>
                         </ul>
                     </div>
@@ -269,22 +236,22 @@ if (!isset($_SESSION['cart'])) {
 
                         <ul class="list-unstyled mb-0 ft-item">
                             <li>
-                                <a href="#!">Cách đặt hàng?</a>
+                                <a href="../allproduct/">Cách đặt hàng?</a>
                             </li>
                             <li>
-                                <a href="#!">Bạn muốn hoàn hàng?</a>
+                                <a href="../allproduct/">Bạn muốn hoàn hàng?</a>
                             </li>
                             <li>
-                                <a href="#!">Bạn cần tư vấn?</a>
+                                <a href="../allproduct/">Bạn cần tư vấn?</a>
                             </li>
                             <li>
-                                <a href="#!">Tại sao bạn nên chọn chúng tôi?</a>
+                                <a href="../allproduct/">Tại sao bạn nên chọn chúng tôi?</a>
                             </li>
                             <li>
-                                <a href="#!">Chính sách bảo hành & đãi ngộ?</a>
+                                <a href="../allproduct/">Chính sách bảo hành & đãi ngộ?</a>
                             </li>
                             <li>
-                                <a href="#!">Feedback từ khách hàng đã mua tại cửa hàng.</a>
+                                <a href="../allproduct/">Feedback từ khách hàng đã mua tại cửa hàng.</a>
                             </li>
                         </ul>
                     </div>
@@ -295,26 +262,103 @@ if (!isset($_SESSION['cart'])) {
                         <!-- Section: Social media -->
                         <section class="mb-4 ft-icon">
                             <!-- Facebook -->
-                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                                role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+                                href="/allproduct" role="button" data-mdb-ripple-color="dark"><i
+                                    class="fab fa-facebook-f"></i></a>
 
                             <!-- Twitter -->
-                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                                role="button" data-mdb-rippler-color="dark"><i class="fab fa-twitter"></i></a>
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+                                href="/allproduct" role="button" data-mdb-rippler-color="dark"><i
+                                    class="fab fa-twitter"></i></a>
 
                             <!-- Google -->
-                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                                role="button" data-mdb-ripple-color="dark"><i class="fab fa-tiktok"></i></a>
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+                                href="/allproduct" role="button" data-mdb-ripple-color="dark"><i
+                                    class="fab fa-tiktok"></i></a>
 
                             <!-- Instagram -->
-                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!"
-                                role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+                            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1"
+                                href="/allproduct" role="button" data-mdb-ripple-color="dark"><i
+                                    class="fab fa-instagram"></i></a>
 
                         </section>
                     </div>
                 </footer>
             </div>
         </footer>
+        <div id="cart-modal" class="modal">
+            <div class="modal-content modal-lg">
+                <span class="close" onclick="closeCart()">&times;</span>
+                <h2 class="modal-header">Giỏ Hàng</h2>
+                <div id="cart-items">
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <?php foreach ($_SESSION['cart'] as $id => $item): ?>
+                            <div class="row mb-3 align-items-center">
+                                <div class="col-4">
+                                    <span class="item-name text-dark"><?= htmlspecialchars($item['name']); ?></span>
+                                </div>
+                                <div class="col-2">
+                                    <span class="item-price text-dark"><?= number_format($item['price'], 0) . 'đ'; ?></span>
+                                </div>
+                                <? ?>
+                                <div class="col-3 d-flex align-items-center gap-2">
+                                    <form action="../allproduct//update_cart.php" method="POST" class="d-flex w-100">
+                                        <input type="hidden" name="id" value="<?= $id; ?>">
+                                        <input class="form-control quantity-input me-2" type="number" name="quantity"
+                                            value="<?= $item['quantity']; ?>" min="1">
+                                        <button type="submit" name="action" value="update_cart"
+                                            class="btn btn-primary btn-sm text-white w-100">Cập nhật</button>
+                                    </form>
+                                </div>
+                                <div class="col-2">
+                                    <span
+                                        class="item-total text-dark"><?= number_format($item['quantity'] * $item['price'], 0) . 'đ'; ?></span>
+                                </div>
+                                <div class="col-1">
+                                    <!-- Form xóa sản phẩm -->
+                                    <form action="../allproduct//update_cart.php" method="POST">
+                                        <input type="hidden" name="id" value="<?= $id; ?>">
+                                        <button type="submit" name="action" value="remove"
+                                            class="btn btn-danger btn-sm text-white">Xóa</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="row mt-4">
+                            <div class="col-12 text-end">
+                                <a href="../allproduct//checkout.php" class="btn btn-success btn-lg">Thanh toán</a>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <p class="empty-cart-text">Giỏ hàng rỗng!</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
+<script>
+    function openCart() {
+        document.getElementById("cart-modal").style.display = "block";
+    }
+    function closeCart() {
+        document.getElementById("cart-modal").style.display = "none";
+    }
+
+    // Đóng modal khi nhấp bên ngoài
+    window.onclick = function (event) {
+        const modal = document.getElementById("cart-modal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+    setTimeout(() => {
+        const cartMessage = document.getElementById('cart-message');
+        if (cartMessage) {
+            cartMessage.style.display = 'none';
+        }
+    }, 3000);
+</script>
